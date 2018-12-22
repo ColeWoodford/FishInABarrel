@@ -2,14 +2,15 @@ const Sequelize = require('sequelize')
 const UserModel = require('./models/user')
 const BlogModel = require('./models/blog')
 const TagModel = require('./models/tag')
-
+const database_pass = require('./keys/database');
 /**
  * Define details for connecting to the database.
  * @see https://www.codementor.io/mirko0/how-to-use-sequelize-with-node-and-express-i24l67cuz
  */
-const sequelize = new Sequelize('codementor', 'root', 'root', {
+const sequelize = new Sequelize('fish_in_barrel', 'root', database_pass, {
   host: 'localhost',
   dialect: 'mysql',
+  port:    3306,
   pool: {
     max: 10,
     min: 0,
