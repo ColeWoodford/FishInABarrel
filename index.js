@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 // dependencies
-const { User, Blog, Tag } = require('./sequelize')
+const { User, Lake, Fish, Inventory, Bait, CaughtFish, Blog, Tag } = require('./sequelize')
 
 const app = express()
 app.use(bodyParser.json())
@@ -15,6 +15,24 @@ app.post('/api/users', (req, res) => {
 // get all users
 app.get('/api/users', (req, res) => {
 	User.findAll().then(users => res.json(users))
+})
+
+// create a lake
+app.post('/api/lakes', (req, res) => {
+	Lake.create(req.body)
+		.then(lake => res.json(lake))
+})
+// get all lakes
+app.get('/api/lakes', (req, res) => {
+	Lake.findAll().then(lakes => res.json(lakes))
+})
+
+// create a fish
+app.post('/api/fishes', (req, res) => {
+	const body = req.body
+	// either find a lake with name or create a new one
+	const lakes = body.lakes.map(lake => Lake.findOrCreate({ where: { name: lake.name }, defaults: { name: lake.name }})
+										.spread((lake, created) => lake));
 })
 
 // create a blog post
