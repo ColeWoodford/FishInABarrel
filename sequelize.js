@@ -71,6 +71,7 @@ module.exports = {
   Lake,
   Fish,
   Inventory,
+  FishingRod,
   Bait,
   CaughtFish,
   Blog,

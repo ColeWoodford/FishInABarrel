@@ -1,9 +1,13 @@
 module.exports = (sequelize, type) => {
 	return sequelize.define('fish', {
 		id: {
-			type: type.INTEGER,
+			type: type.UUID,
 			primaryKey: true,
-			autoIncrement: true
+			defaultValue: type.UUIDV4
+		},
+		lakeId: {
+			type: type.UUID,
+			allowNull: false
 		},
 		name: {
 			type: type.STRING
