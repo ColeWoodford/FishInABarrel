@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 
 	router(app, db);
 
-const PORT = 3000
+const PORT = 8000
 
 //drop and resync with { force: true }
 db.sequelize.sync().then(() => {
