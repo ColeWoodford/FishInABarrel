@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const db = require('./server/config/sequelize');
 const router = require('./server/router/index');
 
+const { Client } = require('pg');
+
 const app = express()
 app.use(bodyParser.json())
 
@@ -18,11 +20,18 @@ app.use((req, res, next) => {
 
 	router(app, db);
 
-const PORT = 8000
-
-//drop and resync with { force: true }
-db.sequelize.sync().then(() => {
-	app.listen(PORT, () => {
-		console.log('Express listening on port:', PORT);
+	const client = new Client({
+		connectionString: process.env.DATABASE_URL,
+		ssl: true,
 	});
-});
+
+	client.connect();
+
+// const PORT = 8000
+
+// //drop and resync with { force: true }
+// db.sequelize.sync().then(() => {
+// 	app.listen(PORT, () => {
+// 		console.log('Express listening on port:', PORT);
+// 	});
+// });
