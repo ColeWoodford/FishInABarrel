@@ -1,9 +1,11 @@
 export const getLake = () => {
-	fetch('http://localhost:8000/lakes')
+	const lake = fetch('http://localhost:8000/api/lakes')
 	.then(function(response) {
 		return response.json();
 	})
 	.then(function(myJson) {
-		console.log(JSON.stringify(myJson));
+		return myJson;
 	});
+
+	return lake;
 }

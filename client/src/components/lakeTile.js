@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { LakeTile } from './styledComponents/lakeTile-sc';
+
+import { getLakes } from '../actions/lake-actions';
 
 class Tile extends Component {
 	constructor(props) {
@@ -15,6 +19,7 @@ class Tile extends Component {
 			display: "><>",
 			firstFlag: false,
 		})
+		this.props.getLakes();
 	}
 
 	handleFocus = () => {
@@ -44,14 +49,34 @@ class Tile extends Component {
 		}
 	}
 
+	getLakeName = () => {
+		if (this.props.lakes.length) {
+			return this.props.lakes[0].lakeName;
+		}
+	}
+
 	render() {
     	return (
 			<div>
+				<div>
+					{this.getLakeName()}
+				</div>
 				<LakeTile onClick={this.handleClick} onFocus={this.handleFocus} onBlur={this.handleBlur}>
 					{this.state.display}
 				</LakeTile>
 			</div>
-		)}
+		)
+	}
 }
 
-export default Tile;
+function mapStateToProps(state) {
+	return {
+		lakes: state.LakesReducer.lakes
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ getLakes: getLakes }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tile);

@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
-// import UsersReducer from './reducer_users';
-
+import LakesReducer from './lake-reducer';
 const rootReducer = combineReducers({
-    // users: UsersReducer
+    LakesReducer,
 });
 
 export default rootReducer;

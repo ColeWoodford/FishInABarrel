@@ -1,33 +1,18 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-// import Api from '...'
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { actions } from '../actions/lake-actions';
+import { getLake } from '../api/lake-api';
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
-// function* fetchUser(action) {
-// 	try {
-// 		const user = yield call(Api.fetchUser, action.payload.userId);
-// 		yield put({type: "USER_FETCH_SUCCEEDED", user: user});
-// 	} catch (e) {
-// 		yield put({type: "USER_FETCH_FAILED", message: e.message});
-// 	}
-// }
-
-// /*
-// 	Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
-// 	Allows concurrent fetches of user.
-// */
-function* mySaga() {
-	// yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
+function* getLakes(action) {
+	try {
+		const lakes = yield call(getLake, action.payload);
+		yield put({type: actions.GET_LAKES_SUCCESS, payload: lakes});
+	} catch (e) {
+		yield put({type: actions.GET_LAKES_FAILURE, message: e.message});
+	}
 }
 
-// /*
-// 	Alternatively you may use takeLatest.
-
-// 	Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
-// 	dispatched while a fetch is already pending, that pending fetch is cancelled
-// 	and only the latest one will be run.
-// */
-// function* mySaga() {
-// 	yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
-// }
+function* mySaga() {
+	yield takeLatest(actions.GET_LAKES, getLakes);
+}
 
 export default mySaga;

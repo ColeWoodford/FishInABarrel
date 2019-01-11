@@ -1,25 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import reducers from './reducers';
+import rootReducer from './reducers';
 import mySaga from './sagas/lake-saga';
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 // mount it on the Store
 const store = createStore(
-	reducers,
+	rootReducer,
 	applyMiddleware(sagaMiddleware)
 );
 
 // then run the saga
 sagaMiddleware.run(mySaga);
+
+// Log the initial state
+console.log(store.getState())
+
+// Every time the state changes, log it
+// Note that subscribe() returns a function for unregistering the listener
+const unsubscribe = store.subscribe(() => console.log(store.getState()))
 
 // render the application
 ReactDOM.render(
@@ -32,3 +38,6 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// Stop listening to state updates
+// unsubscribe()
