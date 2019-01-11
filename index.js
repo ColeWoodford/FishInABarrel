@@ -1,61 +1,28 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-// dependencies
-const { User, Blog, Tag } = require('./sequelize')
+const express = require('express');
+const bodyParser = require('body-parser');
+const db = require('./server/config/sequelize');
+const router = require('./server/router/index');
 
 const app = express()
 app.use(bodyParser.json())
 
-// API ENDPOINTS
-// create a user
-app.post('/api/users', (req, res) => {
-  User.create(req.body)
-      .then(user => res.json(user))
-})
-// get all users
-app.get('/api/users', (req, res) => {
-  User.findAll().then(users => res.json(users))
-})
+/**
+ * For CRUD using sequelize:
+ * @see https://lorenstewart.me/2016/10/03/sequelize-crud-101/
+ */
 
-// create a blog post
-app.post('/api/blogs', (req, res) => {
-  const body = req.body
-  // either find a tag with name or create a new one
-  const tags = body.tags.map(tag => Tag.findOrCreate({ where: { name: tag.name }, defaults: { name: tag.name }})
-                                      .spread((tag, created) => tag))
-  User.findById(body.userId)
-      .then(() => Blog.create(body))
-      .then(blog => Promise.all(tags).then(storedTags => blog.addTags(storedTags)).then(() => blog))
-      .then(blog => Blog.findOne({ where: {id: blog.id}, include: [User, Tag]}))
-      .then(blogWithAssociations => res.json(blogWithAssociations))
-      .catch(err => res.status(400).json({ err: `User with id = [${body.userId}] doesn\'t exist.`}))
-})
+app.use((req, res, next) => {
+	res.header('Content-Type', 'application/json');
+	next();
+});
 
-// find blogs belonging to one user or all blogs
-app.get('/api/blogs/:userId?', (req, res) => {
-  let query;
-  if(req.params.userId) {
-      query = Blog.findAll({ include: [
-          { model: User, where: { id: req.params.userId } },
-          { model: Tag }
-      ]})
-  } else {
-      query = Blog.findAll({ include: [Tag, User]})
-  }
-  return query.then(blogs => res.json(blogs))
-})
+	router(app, db);
 
-// find blogs by tag
-app.get('/api/blogs/:tag/tag', (req, res) => {
-  Blog.findAll({
-      include: [
-          { model: Tag, where: { name: req.params.tag } }
-      ]
-  })
-  .then(blogs => res.json(blogs))
-})
+const PORT = 8000
 
-const port = 3000
-app.listen(port, () => {
-    console.log(`Running on http://localhost:${port}`)
-})
+//drop and resync with { force: true }
+db.sequelize.sync().then(() => {
+	app.listen(PORT, () => {
+		console.log('Express listening on port:', PORT);
+	});
+});

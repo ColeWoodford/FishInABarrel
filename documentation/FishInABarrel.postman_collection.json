@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "c5299b13-2b08-44f9-b821-e45e842b8d29",
+		"name": "FishInABarrel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Lake",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cb34828e-5a17-481f-84a3-1ae766ee9cd5",
+						"exec": [
+							"pm.test('Save lakeId', function() {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.environment.set(\"lakeId\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lakeName\" : \"Forest Lake\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/lakes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"lakes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Lakes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/lakes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"lakes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7f3d927-ef56-4b58-8e28-cd9a349d196e",
+						"exec": [
+							"pm.test('Save userId', function() {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.environment.set(\"userId\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\" : \"Cole\",\n\t\"password\" : \"password\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/users/{{lakeId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{lakeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Fish",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf066203-6a14-4577-9f2a-1ae8babd6800",
+						"exec": [
+							"pm.test('Save fishId', function() {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.environment.set(\"fishId\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Trout\",\n\t\"level\" : \"1\",\n\t\"value\" : \"10\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/fishes/{{lakeId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"fishes",
+						"{{lakeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Fish",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/fishes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"fishes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Inventory",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7dd648a0-48a4-4d92-b343-6c0cb1f647b7",
+						"exec": [
+							"pm.test('Save inventoryId', function() {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.environment.set(\"inventoryId\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"size\" : \"10\",\n\t\"money\" : \"100\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/inventories/{{userId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"inventories",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Inventory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/inventories",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"inventories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Fishing Rod",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f2264ca-8cd6-4873-8f9e-06a08ce8039b",
+						"exec": [
+							"pm.test('Save fishingrodId', function() {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.environment.set(\"fishingrodId\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Bamboo Rod\",\n\t\"level\" : \"1\",\n\t\"value\" : \"50\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/fishingrods/{{inventoryId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"fishingrods",
+						"{{inventoryId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Fishing Rods",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/fishingrods",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"fishingrods"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Bait",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f562230-0713-4198-a632-57ea9782cb7c",
+						"exec": [
+							"pm.test('Save baitId', function() {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.environment.set(\"baitId\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Worms\",\n\t\"level\" : \"1\",\n\t\"value\" : \"5\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/baits/{{inventoryId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"baits",
+						"{{inventoryId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Bait",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/baits",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"baits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Caught Fish",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2e11bce-1672-414d-8387-306efb5a46fd",
+						"exec": [
+							"pm.test('Save caughtfishId', function() {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.environment.set(\"caughtfishId\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Trout\",\n\t\"level\" : \"1\",\n\t\"value\" : \"10\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/caughtfishes/{{inventoryId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"caughtfishes",
+						"{{inventoryId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Caught Fishes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/caughtfishes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"caughtfishes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
