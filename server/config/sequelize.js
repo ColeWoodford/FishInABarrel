@@ -8,7 +8,7 @@ const database_pass = require('../keys/database');
 const sequelize = new Sequelize('fish_in_barrel', 'root', database_pass, {
   host: 'localhost',
   dialect: 'mysql',
-  port:    3306,
+  port:    process.env.PORT || 3306,
   pool: {
     max: 10,
     min: 0,
