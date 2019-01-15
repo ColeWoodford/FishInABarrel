@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 
 	router(app, db);
 
-const PORT = normalizePort(process.env.PORT || '8000');
+const PORT = process.env.PORT || 8000;
 app.set('port', PORT);
 
 //drop and resync with { force: true }

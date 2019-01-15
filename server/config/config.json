@@ -1,0 +1,12 @@
+{
+	"development" : {
+		"username" : "postgres",
+		"password" : "root",
+		"database" : "fish_in_barrel",
+		"host" : "localhost",
+		"dialect" : "mysql"
+	},
+	"production" : {
+		"use_env_variable" : "DATABASE_URL"
+	}
+}
