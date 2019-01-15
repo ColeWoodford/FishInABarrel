@@ -12,10 +12,10 @@ app.use(bodyParser.json())
  * @see https://lorenstewart.me/2016/10/03/sequelize-crud-101/
  */
 if (process.env.NODE_ENV == 'production') {
-	app.use(express.static(path.resolve(__dirname, '../client/build')));
+	app.use(express.static(path.resolve(__dirname, '../client')));
 
 	app.get('/*', (request, response) => {
-		response.sendFile(path.resolve(__dirname, '../client/build/index.html'));
+		response.sendFile(path.resolve(__dirname, '../client/index.js'));
 	})
 } else {
 	app.use((req, res, next) => {
