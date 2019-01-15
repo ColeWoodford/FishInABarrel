@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./server/config/sequelize');
 const router = require('./server/router/index');
+const path = require('path');
 
 const app = express()
 app.use(bodyParser.json())
@@ -11,7 +12,7 @@ app.use(bodyParser.json())
  * @see https://lorenstewart.me/2016/10/03/sequelize-crud-101/
  */
 if (process.env.NODE_ENV == 'production') {
-	app.use(express.static(path.resolve(__dirname, '../client.build')));
+	app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 	app.get('/*', (request, response) => {
 		response.sendFile(path.resolve(__dirname, '../client/build/index.html'));
