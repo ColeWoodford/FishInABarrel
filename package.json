@@ -4,7 +4,7 @@
   "description": "web-based fishing game",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm start --prefix client\" \"node index.js\"",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-server": "concurrently \"npm start --prefix client\" \"node index.js\""
   },
