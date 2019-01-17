@@ -5,7 +5,7 @@ module.exports = (sequelize, type) => {
 			primaryKey: true,
 			defaultValue: type.UUIDV4
 		},
-		lakeName: {
+		lake_name: {
 			type: type.STRING,
 			allowNull: false
 		},

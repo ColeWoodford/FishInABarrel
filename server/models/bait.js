@@ -5,7 +5,7 @@ module.exports = (sequelize, type) => {
 			primaryKey: true,
 			defaultValue: type.UUIDV4
 		},
-		inventoryId: {
+		inventory_id: {
 			type: type.UUID,
 			allowNull: false
 		},

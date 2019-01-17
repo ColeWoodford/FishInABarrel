@@ -51,7 +51,7 @@ class Tile extends Component {
 
 	getLakeName = () => {
 		if (this.props.lakes.length) {
-			return this.props.lakes[0].lakeName;
+			return this.props.lakes[0].lake_name;
 		}
 	}
 
