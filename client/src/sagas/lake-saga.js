@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actions } from '../actions/lake-actions';
-import { getLake } from '../api/lake-api';
+import { getLake, postLake } from '../api/lake-api';
 
 function* getLakes(action) {
 	try {
@@ -11,8 +11,21 @@ function* getLakes(action) {
 	}
 }
 
+function* newLake(action) {
+	try {
+		const newLakePayload = {
+			lake_name: action.payload,
+		}
+		const newLake = yield call(postLake, newLakePayload);
+		yield put({type: actions.NEW_LAKE_SUCCESS, payload: newLake});
+	} catch (e) {
+		yield put({type: actions.NEW_LAKE_FAILURE, message: e.message});
+	}
+}
+
 function* mySaga() {
 	yield takeLatest(actions.GET_LAKES, getLakes);
+	yield takeLatest(actions.NEW_LAKE, newLake);
 }
 
 export default mySaga;

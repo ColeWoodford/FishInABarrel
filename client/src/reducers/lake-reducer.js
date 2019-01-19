@@ -2,6 +2,7 @@ import { actions } from '../actions/lake-actions';
 
 const initialState = {
 		lakes: [],
+		currentLake: "",
 	}
 
 function LakesReducer(state = initialState, action) {
@@ -9,10 +10,17 @@ function LakesReducer(state = initialState, action) {
 		case actions.GET_LAKES_SUCCESS:
 			return Object.assign({}, state, {
 				lakes: action.payload
-			})
+			});
 		case actions.GET_LAKES_FAILURE:
 			console.log("Failed ",action.payload);
-			return state
+			return state;
+		case actions.NEW_LAKE_SUCCESS:
+			return Object.assign({}, state, {
+				currentLake: action.payload
+			});
+		case actions.NEW_LAKE_FAILURE:
+			console.log("Failed ", action.payload);
+			return state;
 		default:		
 			return state
 	}
