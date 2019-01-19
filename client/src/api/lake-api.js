@@ -5,7 +5,6 @@ export const getLake = () => {
 		return response.json();
 	})
 	.then(function(myJson) {
-		console.log("HERE",myJson);
 		return myJson;
 	});
 
@@ -13,7 +12,6 @@ export const getLake = () => {
 }
 
 export const postLake = (data = {}) => {
-	console.log("HERE ", data);
 	// return fetch('http://localhost:8000/api/lakes', {
 	return fetch('/api/lakes', {
 		method: "POST",

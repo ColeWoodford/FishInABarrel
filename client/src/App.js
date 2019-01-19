@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <LakeList />
+        <LakeList>Add Desert Lake</LakeList>
         <Tile></Tile>
       </div>
     );
