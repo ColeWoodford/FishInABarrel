@@ -5,6 +5,7 @@ import { getLake, postLake } from '../api/lake-api';
 function* getLakes(action) {
 	try {
 		const lakes = yield call(getLake, action.payload);
+		console.log("RESULT OF GET CALL: ", lakes);
 		yield put({type: actions.GET_LAKES_SUCCESS, payload: lakes});
 	} catch (e) {
 		yield put({type: actions.GET_LAKES_FAILURE, message: e.message});
