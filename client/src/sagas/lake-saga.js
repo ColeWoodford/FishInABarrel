@@ -19,7 +19,7 @@ function* newLake(action) {
 		const newLake = yield call(postLake, newLakePayload);
 		yield put({type: actions.NEW_LAKE_SUCCESS, payload: newLake});
 	} catch (e) {
-		yield put({type: actions.NEW_LAKE_FAILURE, message: e.message});
+		yield put({type: actions.NEW_LAKE_FAILURE, payload: e.message});
 	}
 }
 
