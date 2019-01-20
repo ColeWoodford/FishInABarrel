@@ -5,7 +5,6 @@ export const getLake = () => {
 		return response.json();
 	})
 	.then(function(myJson) {
-		console.log("RESULT OF API: ", myJson);
 		return myJson;
 	});
 
