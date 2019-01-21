@@ -8,7 +8,7 @@ function* getLakes(action) {
 		const lakes = yield call(getLake, action.payload);
 		yield put({type: actions.GET_LAKES_SUCCESS, payload: lakes});
 	} catch (e) {
-		yield put({type: actions.GET_LAKES_FAILURE, payload: e.message, lakes: lakes});
+		yield put({type: actions.GET_LAKES_FAILURE, payload: e.message});
 	}
 }
 
