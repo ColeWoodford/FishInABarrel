@@ -5,6 +5,8 @@ const router = require('./server/router/index');
 const path = require('path');
 
 const app = express()
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 app.use(bodyParser.json())
 
 /**
@@ -24,6 +26,17 @@ if (process.env.NODE_ENV == 'production') {
 	});
 }
 
+io.on('connection', function(socket){
+	console.log('a user connected');
+	socket.on('client message', function(msg) {
+		console.log("broadcasting message: ", msg);
+		io.emit('chat message', msg);
+	})
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
 router(app, db);
 
 const PORT = process.env.PORT || 8000;
@@ -31,7 +44,7 @@ app.set('port', PORT);
 
 //drop and resync with { force: true }
 db.sequelize.sync().then(() => {
-	app.listen(PORT, () => {
+	http.listen(PORT, () => {
 		console.log('Express listening on port:', PORT);
 	});
 });

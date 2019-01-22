@@ -9,6 +9,8 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
 import mySaga from './sagas/lake-saga';
 
+import openSocket from 'socket.io-client';
+
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 // mount it on the Store
@@ -16,6 +18,8 @@ const store = createStore(
 	rootReducer,
 	applyMiddleware(sagaMiddleware)
 );
+
+const socket = openSocket('http://localhost:8000/');
 
 // then run the saga
 sagaMiddleware.run(mySaga);
@@ -30,7 +34,7 @@ const unsubscribe = store.subscribe(() => console.log(store.getState()))
 // render the application
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<App socket={socket}/>
 	</Provider>
 	, document.getElementById('root'));
 
