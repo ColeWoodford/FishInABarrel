@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
 import mySaga from './sagas/lake-saga';
 
-import openSocket from 'socket.io-client';
+import io from 'socket.io-client';
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -19,7 +19,7 @@ const store = createStore(
 	applyMiddleware(sagaMiddleware)
 );
 
-const socket = openSocket('http://localhost:8000/');
+const socket = io('http://localhost:8000', { transport : ['websocket'] });
 
 // then run the saga
 sagaMiddleware.run(mySaga);

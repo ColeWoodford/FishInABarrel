@@ -1,13 +1,37 @@
 const express = require('express');
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 const db = require('./server/config/sequelize');
-const router = require('./server/router/index');
 const path = require('path');
+// const cors = require('cors');
 
-const app = express()
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const whitelist = ['localhost:3000', 'https://secure-bastion-35148.herokuapp.com'];
+// const corsOptions = {
+// 	origin: function(origin, callback) {
+// 		if (whitelist.indexOf(origin) !== -1 || !origin) {
+// 			callback(null, true);
+// 		} else {
+// 			callback(new Error('Not allowed by CORS'));
+// 		}
+// 	}
+// }
+
+// app.use(cors(corsOptions));
+
+// io.origins((origin, callback) => {
+// 	console.log("HERE", origin);
+// 	if (origin !== 'http://localhost:3000') {
+// 		console.log("FAIL");
+// 		return callback('origin not allowed', false);
+// 	}
+// 	callback(null, true);
+// });
+io.set('origins', '*localhost:3000*:*');
+
 app.use(bodyParser.json())
+const router = require('./server/router/index');
 
 /**
  * For CRUD using sequelize:
