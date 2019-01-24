@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <LakeList>Add Desert Lake</LakeList>
+        {/* <LakeList>Add Desert Lake</LakeList> */}
         <Tile></Tile>
         <Chat socket={this.props.socket} />
       </div>
