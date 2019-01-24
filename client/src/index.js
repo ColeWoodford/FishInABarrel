@@ -19,7 +19,7 @@ const store = createStore(
 	applyMiddleware(sagaMiddleware)
 );
 
-const socket = io('http://secure-bastion-35148.herokuapp.com/', { transport : ['websocket'] });
+const socket = io('https://secure-bastion-35148.herokuapp.com/', { transport : ['websocket'] });
 
 // then run the saga
 sagaMiddleware.run(mySaga);
