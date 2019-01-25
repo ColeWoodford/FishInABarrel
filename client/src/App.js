@@ -8,6 +8,7 @@ import Header from './view/header';
 import './app.css';
 
 class App extends Component {
+
   render() {
     return (
       <div>
@@ -22,9 +23,6 @@ class App extends Component {
             <Route path="/admin" component={Admin} />
           </div>
         </BrowserRouter>
-        {/* <LakeList>Add Desert Lake</LakeList> */}
-        {/* <Tile></Tile>
-        <Chat socket={this.props.socket} /> */}
       </div>
     );
   }
