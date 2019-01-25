@@ -37,10 +37,12 @@ const router = require('./server/router/index');
  * For CRUD using sequelize:
  * @see https://lorenstewart.me/2016/10/03/sequelize-crud-101/
  */
+router(app, db);
+
 if (process.env.NODE_ENV == 'production') {
 	app.use(express.static(path.resolve(__dirname, './client/build')));
 
-	app.get('./client/build/*', (request, response) => {
+	app.get('/*', (request, response) => {
 		response.sendFile(path.resolve(__dirname, './client/build/index.html'));
 	})
 } else {
@@ -60,8 +62,6 @@ io.on('connection', function(socket){
     console.log('user disconnected');
   });
 });
-
-router(app, db);
 
 const PORT = process.env.PORT || 8000;
 app.set('port', PORT);
