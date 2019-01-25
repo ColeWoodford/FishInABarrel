@@ -40,7 +40,7 @@ const router = require('./server/router/index');
 if (process.env.NODE_ENV == 'production') {
 	app.use(express.static(path.resolve(__dirname, './client/build')));
 
-	app.get('/*', (request, response) => {
+	app.get('./client/build/index.html/*', (request, response) => {
 		response.sendFile(path.resolve(__dirname, './client/build/index.html'));
 	})
 } else {
