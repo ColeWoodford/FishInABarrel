@@ -1,42 +1,61 @@
 import React, { Component } from 'react';
-import { MenuInput, MenuLink, MenuList, MenuListItem } from './landing-sc';
+import { MenuLink, MenuList, MenuListItem } from './landing-sc';
+import Login from './login';
 
 class Landing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      playGame: false,
+      newUser: false
     };
   }
 
-  handleUsernameChange = (event) => {
+  handlePlayGame = () => {
     this.setState({
-      username: event.target.value
-    });
+      playGame: true,
+      newUser: false
+    })
   }
 
-  handlePasswordChange = (event) => {
+  handleNewUser = () => {
     this.setState({
-      password: event.target.value
-    });
+      playGame: false,
+      newUser: true
+    })
   }
 
-  handleLogin = () => {
-    if (this.state.username === "cole" && this.state.password === "password") {
-      console.log("Logged on");
-    }
+  handleBack = () => {
+    this.setState({
+      playGame: false,
+      newUser: false
+    })
   }
 
   render() {
+
     return(
       <div>
+        {(this.state.playGame || this.state.newUser) ? 
         <MenuList>
-          <MenuInput placeholder=" Username" onChange={this.handleUsernameChange} ></MenuInput>
-          <MenuInput placeholder=" Password" onChange={this.handlePasswordChange} ></MenuInput>
-          <MenuListItem><MenuLink href="/lake" >Play Game</MenuLink></MenuListItem>
-          <MenuListItem><MenuLink>New User</MenuLink></MenuListItem>
+            <Login playGame={this.state.playGame} newUser={this.state.newUser} />
+            <button onClick={this.handleBack} >Back</button>
+        </MenuList> :
+        <MenuList>
+          <MenuListItem>
+            <MenuLink
+            onClick={this.handlePlayGame}
+            >
+              LOGIN
+            </MenuLink>
+            <MenuLink
+            onClick={this.handleNewUser}
+            >
+              NEW USER
+            </MenuLink>
+          </MenuListItem>
         </MenuList>
+        }
       </div>
     )
   }

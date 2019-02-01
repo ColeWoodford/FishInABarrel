@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './reducers';
-import mySaga from './sagas/lake-saga';
+import rootSaga from './sagas/index';
 
 import io from 'socket.io-client';
 
@@ -22,7 +22,7 @@ const store = createStore(
 const socket = io('https://secure-bastion-35148.herokuapp.com/', { transport : ['websocket'] });
 
 // then run the saga
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(rootSaga);
 
 // Log the initial state
 console.log(store.getState())

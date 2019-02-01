@@ -23,9 +23,9 @@ function* newLake(action) {
 	}
 }
 
-function* mySaga() {
+function* lakeSaga() {
 	yield takeLatest(actions.GET_LAKES, getLakes);
 	yield takeLatest(actions.NEW_LAKE, newLake);
 }
 
-export default mySaga;
+export default lakeSaga;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ChatWindow, ChatWrapper, ChatTextEntry, ChatSendButton } from './styledComponents/chat-sc';
 
 class Chat extends Component {
@@ -7,7 +8,7 @@ class Chat extends Component {
     this.state = {
       message: "",
       chatBoxContent: [],
-      user: "anon"
+      user: this.props.username
     };
     const { socket } = this.props;
     socket.on('chat message', (msg) => {
@@ -78,9 +79,9 @@ class Chat extends Component {
 
     return(
       <div>
-        <p>Change UserName:</p>
+        {/* <p>Change UserName:</p>
         <input type="text" onChange={this.handleUserName} />
-        <input type="submit" onClick={this.handleChangeUser} />
+        <input type="submit" onClick={this.handleChangeUser} /> */}
         <ChatWrapper>
           <ChatWindow>
             {this.makeChat()}
@@ -93,4 +94,10 @@ class Chat extends Component {
   }
 };
 
-export default Chat;
+function mapStateToProps(state) {
+  return {
+      username: state.LoginReducer.username
+  };
+}
+
+export default connect(mapStateToProps)(Chat);

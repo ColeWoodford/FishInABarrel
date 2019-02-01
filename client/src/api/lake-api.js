@@ -5,7 +5,6 @@ export const getLake = () => {
 			"Accept": "application/json",
 		}
 	})
-	// const lake = fetch('http://localhost:8000/api/lakes')
 	.then(function(response) {
 		return response.json();
 	})
@@ -17,7 +16,6 @@ export const getLake = () => {
 }
 
 export const postLake = (data = {}) => {
-	// return fetch('http://localhost:8000/api/lakes', {
 	return fetch('/api/lakes', {
 		method: "POST",
 		headers: {
