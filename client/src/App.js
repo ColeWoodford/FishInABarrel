@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { BackgroundWrapper } from './components/styledComponents/app-sc';
 import Landing from './view/pages/landing/landing';
-import Lake from './view/pages/lake';
+import Lake from './view/pages/lake/lake';
 import Admin from './view/pages/admin/admin';
-import Header from './view/header';
 import './app.css';
 
 class App extends Component {

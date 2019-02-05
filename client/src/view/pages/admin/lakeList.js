@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { LakeButton } from './styledComponents/lakeTile-sc';
 
-import { newLake } from '../actions/lake-actions';
+import { newLake } from '../../../actions/lake-actions';
 
 class LakeList extends Component {
   

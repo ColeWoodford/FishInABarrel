@@ -7,7 +7,7 @@ class Landing extends Component {
     super(props);
     this.state = {
       playGame: false,
-      newUser: false
+      newUser: false,
     };
   }
 

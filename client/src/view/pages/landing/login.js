@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
-import { login, createUser } from '../../../actions/login-actions';
+import { login, createUser } from '../../../store/actions/login-actions';
 import { MenuInput, MenuListItem } from './landing-sc';
 
 class Login extends Component {

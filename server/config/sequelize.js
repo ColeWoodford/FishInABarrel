@@ -5,22 +5,6 @@ const database_pass = require('../keys/database');
  * Define details for connecting to the database.
  * @see https://www.codementor.io/mirko0/how-to-use-sequelize-with-node-and-express-i24l67cuz
  */
-// const sequelize = new Sequelize('fish_in_barrel', 'root', database_pass, {
-//   host: 'localhost',
-//   dialect: 'mysql',
-//   port:    process.env.PORT || 3306,
-//   pool: {
-//     max: 10,
-//     min: 0,
-//     acquire: 30000,
-//     idle: 10000
-//   },
-//   define: {
-//     timestamps: false // true by default
-//   }
-// })
-// const basename = path.basename(__filename);
-
 // Connect all the models/tables in the database to a db object,
 //so everything is accessible via one object
 var db = {};

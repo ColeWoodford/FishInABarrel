@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { LakeTile } from './styledComponents/lakeTile-sc';
+import { LakeTile } from './lakeTile-sc';
 
-import { getLakes } from '../actions/lake-actions';
+import { getLakes } from '../../../store/actions/lake-actions';
 
 class Tile extends Component {
 	constructor(props) {

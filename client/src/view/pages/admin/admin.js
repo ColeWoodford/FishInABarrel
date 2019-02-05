@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getLakes } from '../../../actions/lake-actions';
+import { getLakes } from '../../../store/actions/lake-actions';
 import LakeTable from './lakeTable';
 
 class Admin extends Component {

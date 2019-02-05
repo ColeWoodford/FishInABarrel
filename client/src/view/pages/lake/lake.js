@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Chat from '../../components/chat';
-import Tile from '../../components/lakeTile';
+import Chat from '../../chat';
+import Tile from './lakeTile';
 
 class Lake extends Component {
   render() {
-    console.log("HERE", this.props.username)
     const { username } = this.props;
     let lake;
     if(username !== null) {
@@ -37,10 +35,5 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ login: login }, dispatch);
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Lake);
 export default connect(mapStateToProps)(Lake);
 

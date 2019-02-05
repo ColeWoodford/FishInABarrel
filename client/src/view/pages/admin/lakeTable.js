@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TableEntry } from './adminStyledComponents/admin-sc';
+import { TableEntry } from './admin-sc';
 
 class LakeTable extends Component {
   listLakes = () => {

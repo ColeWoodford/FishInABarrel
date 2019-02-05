@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HeaderList, HeaderListItem, HeaderLink, HeaderRightItem } from '../components/styledComponents/header-sc';
+import { HeaderList, HeaderListItem, HeaderLink, HeaderRightItem } from './header-sc';
 
 class Header extends Component {
 
