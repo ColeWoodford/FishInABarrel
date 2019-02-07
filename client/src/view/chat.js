@@ -51,7 +51,7 @@ class Chat extends Component {
       this.setState({
         message: ""
       });
-  }
+    }
   }
 
   handleKeyPress = (event) => {
@@ -65,7 +65,7 @@ class Chat extends Component {
           message: ""
         });
       }
-  }
+    }
   }
 
   makeChat = () => {
@@ -101,7 +101,6 @@ function mapStateToProps(state) {
 Chat.propTypes = {
   socket: PropTypes.any,
   username: PropTypes.string,
-
 }
 
 export default connect(mapStateToProps)(Chat);

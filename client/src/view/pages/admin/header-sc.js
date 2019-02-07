@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const HeaderList = styled.ul`
   list-style-type: none;
@@ -23,7 +24,19 @@ export const HeaderListItem = styled.li`
   }
 `;
 
-export const HeaderLink = styled.a`
+export const HeaderLink = styled(Link)`
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #111;
+  }
+`;
+
+export const HeaderATag = styled.a`
   display: block;
   color: white;
   text-align: center;

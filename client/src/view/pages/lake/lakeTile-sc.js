@@ -1,7 +1,26 @@
 import styled from 'styled-components';
 
+export const LakeContainer = styled.div`
+	margin: auto;	
+	width: 80%;
+`;
+
+export const Row = styled.div`
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+`;
+
+export const Col = styled.div`
+	float: left;
+	width: 33.33%;
+	height: 100px;
+`;
+
 export const LakeTile = styled.button`
-	width: 100px;
+	width: 100%;
 	height: 100px;
 	background: #00ccff;
 	box-shadow: none;

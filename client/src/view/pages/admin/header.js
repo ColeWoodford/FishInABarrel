@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HeaderList, HeaderListItem, HeaderLink, HeaderRightItem } from './header-sc';
+import { HeaderList, HeaderListItem, HeaderLink, HeaderRightItem, HeaderATag } from './header-sc';
 
 class Header extends Component {
 
@@ -7,10 +7,10 @@ class Header extends Component {
     return (
       <div>
         <HeaderList>
-          <HeaderListItem><HeaderLink href='/'>Home</HeaderLink></HeaderListItem>
-          <HeaderListItem><HeaderLink href='/lake'>Lake</HeaderLink></HeaderListItem>
-          <HeaderListItem><HeaderLink href='/admin'>Admin</HeaderLink></HeaderListItem>
-          <HeaderRightItem><HeaderLink href='/login'>Login</HeaderLink></HeaderRightItem>
+          <HeaderListItem><HeaderLink to="/">Home</HeaderLink></HeaderListItem>
+          <HeaderListItem><HeaderLink to="/lake">Lake</HeaderLink></HeaderListItem>
+          <HeaderListItem><HeaderLink to="/admin">Admin</HeaderLink></HeaderListItem>
+          <HeaderRightItem><HeaderATag href="/">Logout</HeaderATag></HeaderRightItem>
         </HeaderList>
       </div>
     )
