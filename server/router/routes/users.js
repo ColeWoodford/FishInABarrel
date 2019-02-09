@@ -39,4 +39,14 @@ module.exports = (app, db) => {
 		})
 		.then(user => res.json(user));
 	})
+
+	// Delete a user
+	app.delete('/api/users/:username', (req, res) => {
+		db.user.destroy({
+			where: { username: req.params.username }
+		})
+		.then(deletedUser => {
+			res.json(req.params.username);
+		})
+	})
 };

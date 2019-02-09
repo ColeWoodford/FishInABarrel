@@ -13,6 +13,12 @@ function UsersReducer(state = initialState, action) {
 		case actions.GET_USERS_FAILURE:
 			console.log("Failed to get users: ",action.payload);
 			return state;
+		case actions.DELETE_USER_SUCCESS:
+			console.log("HERE",JSON.stringify(state,null,4));
+			return {...state, users: state.users.filter(user => user.username !== action.payload)};
+		case actions.DELETE_USER_FAILURE:
+		console.log("Failed to delete user: ",action.payload);
+			return state;
 		default:		
 			return state
 	}
