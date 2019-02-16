@@ -5,6 +5,7 @@ import { LakeContainer, Row, Col } from './lakeTile-sc';
 import { getLakes } from '../../../store/actions/lake-actions';
 import Chat from '../../chat';
 import Tile from './lakeTile';
+import Inventory from './inventory/inventory';
 
 class Lake extends Component {
 	componentWillMount() {
@@ -61,6 +62,7 @@ class Lake extends Component {
             </Col>
           </Row>
         </LakeContainer>
+        <Inventory />
         <Chat socket={this.props.socket} />
       </div>
     } else {
@@ -91,4 +93,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lake);
-

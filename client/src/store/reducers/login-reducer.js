@@ -1,26 +1,21 @@
 import { actions } from '../actions/login-actions';
 
 const initialState = {
-		username: null
+		username: null,
+		userId: null,
 	}
 
 function LoginReducer(state = initialState, action) {
 	switch (action.type) {
     case actions.LOGIN_SUCCESS:
-			return Object.assign({}, state, {
-				username: action.payload
-			});
+			return {...state, username: action.payload.username, userId: action.payload.id};
 		case actions.LOGIN_BAD:
-			return Object.assign({}, state, {
-				username: null
-			});
+			return {...state, username: null};
 		case actions.LOGIN_FAILURE:
 			console.log("Failed ", action.payload);
 			return state;
     case actions.CREATE_USER_SUCCESS:
-			return Object.assign({}, state, {
-				username: action.payload
-			});
+			return {...state, username: action.payload.username, userId: action.payload.id};
 		case actions.CREATE_USER_FAILURE:
 			console.log("Failed ", action.payload);
 			return state;

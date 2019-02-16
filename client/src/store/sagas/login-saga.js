@@ -1,6 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actions } from '../actions/login-actions';
+import { actions as invActions } from '../actions/inventory-actions';
 import { login, createUser } from '../api/login-api';
+import { createInventory } from '../api/inventory-api';
 
 function* loginUser(action) {
 	try {
@@ -10,7 +12,7 @@ function* loginUser(action) {
 		}
 		const user = yield call(login, credentials);
 		if (user !== null) {
-			yield put({type: actions.LOGIN_SUCCESS, payload: user.username});
+			yield put({type: actions.LOGIN_SUCCESS, payload: user});
 		} else {
 			yield put({type: actions.LOGIN_BAD, payload: user});
 		}
@@ -28,7 +30,13 @@ function* createNewUser(action) {
 		}
 		const user = yield call(createUser, credentials);
 		if (user !== null) {
-			yield put ({type: actions.CREATE_USER_SUCCESS, payload: user.username});
+			yield put ({type: actions.CREATE_USER_SUCCESS, payload: user});
+			const inventory = yield call(createInventory, user);
+			if (inventory !== null) {
+				yield put ({type: invActions.CREATE_INVENTORY_SUCCESS, payload: inventory});
+			} else {
+				yield put ({type: invActions.CREATE_INVENTORY_FAILURE, payload: "create inventory"});
+			}
 		} else {
 			yield put ({type: actions.CREATE_USER_FAILURE, payload: user});
 		}
