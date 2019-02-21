@@ -2,23 +2,26 @@ import { actions } from '../actions/user-actions';
 
 const initialState = {
 		users: [],
+		selectedUserInfo: null,
+		adminMessage: ""
 	}
 
 function UsersReducer(state = initialState, action) {
 	switch (action.type) {
 		case actions.GET_USERS_SUCCESS:
-			return Object.assign({}, state, {
-				users: action.payload
-			});
+			return {...state, users: action.payload};
 		case actions.GET_USERS_FAILURE:
-			console.log("Failed to get users: ",action.payload);
-			return state;
+		return {...state, adminMessage: ("Failed to get users: ",action.payload)}
 		case actions.DELETE_USER_SUCCESS:
-			console.log("HERE",JSON.stringify(state,null,4));
-			return {...state, users: state.users.filter(user => user.username !== action.payload)};
+			return {
+				...state,
+				users: state.users.filter(user => user.username !== action.payload),
+				adminMessage: "Deleted user"
+			};
 		case actions.DELETE_USER_FAILURE:
-		console.log("Failed to delete user: ",action.payload);
-			return state;
+			return {...state, adminMessage: ("Failed to delete user: ",action.payload)}
+		case actions.GET_USER_INFO_SUCCESS:
+			return {...state, selectedUserInfo: action.payload};
 		default:		
 			return state
 	}

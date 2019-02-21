@@ -30,3 +30,20 @@ export const createInventory = (user = {}) => {
 	})
 	.then(response => response.json());
 }
+
+export const destroyInventory = (userId) => {
+	const destroyedInventory = fetch(`/api/inventories/${userId}`, {
+		method: 'DELETE',
+		headers: {
+			"Accept": "application/json",
+		}
+	})
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(myJson) {
+		return myJson;
+	});
+
+	return destroyedInventory;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getInventory } from '../../../../store/actions/inventory-actions';
+import InvSpace from './invSpace';
 
 class Inventory extends Component {
   componentWillMount() {
@@ -13,9 +14,9 @@ class Inventory extends Component {
     const { size, money } = this.props;
     return (
 			<div>
-				Inventory<br></br>
-        <p>Size: {size}</p>
         <p>Money: {money}</p>
+        Inventory<br></br>
+        <InvSpace size={size}/>
 			</div>
 		)
 	}

@@ -17,4 +17,13 @@ module.exports = (app, db) => {
 		})
 		.then(inventory => res.json(inventory));
 	})
+	// Delete a inventory
+	app.delete('/api/inventories/:userId', (req, res) => {
+		db.inventory.destroy({
+			where: { user_id: req.params.userId }
+		})
+		.then(deletedInv => {
+			res.json(deletedInv);
+		})
+	})
 };

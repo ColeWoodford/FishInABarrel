@@ -18,3 +18,16 @@ export const DeleteUserButton = styled.button`
     background-color: #111;
   }
 `;
+
+export const ViewUserInfoButton = styled.button`
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+
+  &:hover {
+    background-color: #111;
+  }
+`;
