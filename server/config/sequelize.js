@@ -42,14 +42,18 @@ db.tag = require('../models/tag')(sequelize, Sequelize);
 db.lake = require('../models/lake')(sequelize, Sequelize);
 db.fish = require('../models/fish')(sequelize, Sequelize);
 db.inventory = require('../models/inventory')(sequelize, Sequelize);
+db.inventoryitem = require('../models/inventoryitem')(sequelize, Sequelize);
 db.fishingRod = require('../models/fishingrod')(sequelize, Sequelize);
 db.bait = require('../models/bait')(sequelize, Sequelize);
 db.caughtFish = require('../models/caughtfish')(sequelize, Sequelize);
 
-db.user.belongsTo(db.lake, {onDelete: 'cascade', hooks: true});
-db.blog.belongsTo(db.user);
 db.fish.belongsTo(db.lake, {onDelete: 'cascade', hooks: true});
+
+db.user.belongsTo(db.lake, {onDelete: 'cascade', hooks: true});
 db.inventory.belongsTo(db.user, {onDelete: 'cascade', hooks: true});
+db.inventoryitem.belongsTo(db.inventory, {onDelete: 'cascade', hooks: true});
+
+db.blog.belongsTo(db.user);
 db.fishingRod.belongsTo(db.inventory, {onDelete: 'cascade', hooks: true});
 db.bait.belongsTo(db.inventory, {onDelete: 'cascade', hooks: true});
 db.caughtFish.belongsTo(db.inventory, {onDelete: 'cascade', hooks: true});

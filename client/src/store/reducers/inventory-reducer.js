@@ -2,7 +2,8 @@ import { actions } from '../actions/inventory-actions';
 
 const initialState = {
   size: 0,
-  money: 0
+	money: 0,
+	items: []
 	}
 
 function InventoryReducer(state = initialState, action) {
@@ -13,7 +14,12 @@ function InventoryReducer(state = initialState, action) {
 			console.log("Failed to get Inventory: ",action.payload);
 			return state;
 		case actions.CREATE_INVENTORY_SUCCESS:
-			return {...state, size: action.payload.size, money: action.payload.money};
+			return {
+				...state,
+				size: action.payload.inv.size,
+				money: action.payload.inv.money,
+				items: [...state.items, action.payload.rod]
+			};
 		case actions.CREATE_INVENTORY_FAILURE:
 			console.log("Failed ", action.payload);
 			return state;

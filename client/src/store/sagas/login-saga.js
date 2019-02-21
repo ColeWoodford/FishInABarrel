@@ -3,6 +3,8 @@ import { actions } from '../actions/login-actions';
 import { actions as invActions } from '../actions/inventory-actions';
 import { login, createUser } from '../api/login-api';
 import { createInventory } from '../api/inventory-api';
+import { createInventoryItem } from '../api/inventoryItem-api';
+import { bambooRod } from '../assets/fishingRods';
 
 function* loginUser(action) {
 	try {
@@ -26,14 +28,17 @@ function* createNewUser(action) {
 		const credentials = {
 			username: action.payload.username,
 			password: action.payload.password,
-			lake_id: action.payload.lakeid
+			lakeId: action.payload.lakeid
 		}
 		const user = yield call(createUser, credentials);
 		if (user !== null) {
 			yield put ({type: actions.CREATE_USER_SUCCESS, payload: user});
 			const inventory = yield call(createInventory, user);
+			const firstRod = bambooRod;
+			firstRod.id = inventory.id;
+			const fishingRod = yield call(createInventoryItem, firstRod);
 			if (inventory !== null) {
-				yield put ({type: invActions.CREATE_INVENTORY_SUCCESS, payload: inventory});
+				yield put ({type: invActions.CREATE_INVENTORY_SUCCESS, payload: {inv: inventory, rod: fishingRod}});
 			} else {
 				yield put ({type: invActions.CREATE_INVENTORY_FAILURE, payload: "create inventory"});
 			}

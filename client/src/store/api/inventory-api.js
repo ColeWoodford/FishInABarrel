@@ -23,7 +23,7 @@ export const createInventory = (user = {}) => {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			"user_id": user.id,
+			"userId": user.id,
 			"size": "10",
 			"money": "100"
 		}),

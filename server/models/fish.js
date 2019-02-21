@@ -5,10 +5,6 @@ module.exports = (sequelize, type) => {
 			primaryKey: true,
 			defaultValue: type.UUIDV4
 		},
-		lake_id: {
-			type: type.UUID,
-			allowNull: false
-		},
 		name: {
 			type: type.STRING
 		},

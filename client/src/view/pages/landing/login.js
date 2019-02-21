@@ -47,7 +47,7 @@ class Login extends Component {
     {
       username: this.state.username,
       password: this.state.password,
-      lakeid: "80699bd3-9fe2-421f-8f88-8d01c4fdba0c"
+      lakeid: "6502c593-6d0a-4266-8530-08a3faf93ff9"
     });
   }
 

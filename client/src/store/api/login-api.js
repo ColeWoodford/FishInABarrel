@@ -17,7 +17,7 @@ export const login = (credentials) => {
 }
 
 export const createUser = (credentials = {}) => {
-	return fetch(`/api/users/${credentials.username}/lake/${credentials.lake_id}`, {
+	return fetch(`/api/users/${credentials.username}/lake/${credentials.lakeId}`, {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',

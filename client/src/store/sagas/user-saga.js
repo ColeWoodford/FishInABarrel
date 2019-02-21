@@ -15,7 +15,7 @@ function* getUsers(action) {
 function* deleteUser(action) {
 	try{
 		const deletedUser = yield call(destroyUser, action.payload.username);
-		const deletedInv = yield call(destroyInventory, action.payload.id);
+		// const deletedInv = yield call(destroyInventory, action.payload.id);
 		yield put({type: actions.DELETE_USER_SUCCESS, payload: deletedUser});
 	} catch (e) {
 		yield put({type: actions.DELETE_USER_FAILURE, payload: e.message});

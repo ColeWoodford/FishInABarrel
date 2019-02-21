@@ -4,6 +4,7 @@ const routes = [
 	require('./routes/fish'),
 	require('./routes/fishingrods'),
 	require('./routes/inventories'),
+	require('./routes/inventoryitems'),
 	require('./routes/lakes'),
 	require('./routes/users'),
 ];
