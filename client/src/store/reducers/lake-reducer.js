@@ -16,7 +16,8 @@ function LakesReducer(state = initialState, action) {
 			return state;
 		case actions.NEW_LAKE_SUCCESS:
 			return Object.assign({}, state, {
-				currentLake: action.payload
+				currentLake: action.payload,
+				lakes: [...state.lakes, action.payload]
 			});
 		case actions.NEW_LAKE_FAILURE:
 			console.log("Failed ", action.payload);

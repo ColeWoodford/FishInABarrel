@@ -43,11 +43,13 @@ class Login extends Component {
   }
 
   handleNewUser = () => {
+    const { lakes } = this.props;
+    const currentLakeId = lakes[0].id;
     this.props.createUser(
     {
       username: this.state.username,
       password: this.state.password,
-      lakeid: "6502c593-6d0a-4266-8530-08a3faf93ff9"
+      lakeid: currentLakeId
     });
   }
 
@@ -91,7 +93,8 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-      username: state.LoginReducer.username
+      username: state.LoginReducer.username,
+      lakes: state.LakesReducer.lakes
   };
 }
 

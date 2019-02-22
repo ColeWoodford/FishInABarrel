@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { MenuLink, MenuList, MenuListItem } from './landing-sc';
+import { getLakes, newLake } from '../../../store/actions/lake-actions';
 import Login from './login';
 
 class Landing extends Component {
@@ -11,6 +14,10 @@ class Landing extends Component {
     };
   }
 
+  componentWillMount() {
+    this.props.getLakes();
+  }
+
   handlePlayGame = () => {
     this.setState({
       playGame: true,
@@ -19,6 +26,10 @@ class Landing extends Component {
   }
 
   handleNewUser = () => {
+    const { lakes } = this.props;
+    if (lakes.length === 0) {
+      this.props.newLake("Forrest Lake")
+    }
     this.setState({
       playGame: false,
       newUser: true
@@ -61,4 +72,17 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+function mapStateToProps(state) {
+  return {
+    lakes: state.LakesReducer.lakes
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ 
+    getLakes: getLakes,
+    newLake: newLake
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);
