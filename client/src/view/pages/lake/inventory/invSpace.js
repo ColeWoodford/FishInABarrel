@@ -2,87 +2,20 @@ import React, { Component } from 'react';
 import { RodContainer, Item, BaitContainer, BagContainer, InventoryContainer } from './inventory-sc';
 
 class InvSpace extends Component {
+  constructor(props) {
+		super(props);
 
-  state = {
-    items: [
-      {
-        name: "fishing rod",
-        category: "equipedRod",
-        type: "rod",
-        cost: 100,
-        bgcolor: "yellow"
-      },
-      {
-        name: "bait",
-        category: "equipedBait",
-        type: "bait",
-        cost: 10,
-        bgcolor: "pink"
-      },
-      {
-        name: "trout1",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      },
-      {
-        name: "trout2",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      },
-      {
-        name: "trout3",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      },
-      {
-        name: "trout4",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      },
-      {
-        name: "trout5",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      },
-      {
-        name: "trout6",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      },
-      {
-        name: "trout7",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      },
-      {
-        name: "trout8",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      },
-      {
-        name: "trout9",
-        category: "inBag",
-        type: "fish",
-        cost: 50,
-        bgcolor: "skyblue"
-      }
-    ]
+		this.state = {
+			items: this.props.items,
+		}
+	}
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(nextProps.items!==prevState.items){
+      return {items: nextProps.items}
+    } else {
+      return null;
+    }
   }
 
   onDragOver = (e) => {

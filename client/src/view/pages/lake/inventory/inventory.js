@@ -11,12 +11,12 @@ class Inventory extends Component {
   }
 
 	render() {
-    const { size, money } = this.props;
+    const { size, money, items } = this.props;
     return (
 			<div>
         <p>Money: {money}</p>
         Inventory<br></br>
-        <InvSpace size={size}/>
+        <InvSpace size={size} items={items}/>
 			</div>
 		)
 	}
@@ -26,7 +26,8 @@ function mapStateToProps(state) {
   return {
       userId: state.LoginReducer.userId,
       size: state.InventoryReducer.size,
-      money: state.InventoryReducer.money
+      money: state.InventoryReducer.money,
+      items: state.InventoryReducer.items
   };
 }
 

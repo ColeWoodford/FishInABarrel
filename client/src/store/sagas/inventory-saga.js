@@ -1,11 +1,15 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getInventory } from '../api/inventory-api';
+import { getInventoryItems } from '../api/inventoryItem-api';
 import { actions } from '../actions/inventory-actions';
 
 function* getInv(action) {
 	try {
 		const inventory = yield call(getInventory, action.payload);
-		yield put({type: actions.GET_INVENTORY_SUCCESS, payload: inventory});
+		const items = yield call(getInventoryItems, inventory.id);
+		if (items !== null) {
+			yield put({type: actions.GET_INVENTORY_SUCCESS, payload: {inventory, items}});
+		}
 	} catch (e) {
 		yield put({type: actions.GET_INVENTORY_FAILURE, payload: e.message});
 	}

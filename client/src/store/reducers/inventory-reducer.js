@@ -9,7 +9,12 @@ const initialState = {
 function InventoryReducer(state = initialState, action) {
 	switch (action.type) {
 		case actions.GET_INVENTORY_SUCCESS:
-			return {...state, size: action.payload.size, money: action.payload.money};
+			return {
+				...state,
+				size: action.payload.inventory.size,
+				money: action.payload.inventory.money,
+				items: action.payload.items
+			};
 		case actions.GET_INVENTORY_FAILURE:
 			console.log("Failed to get Inventory: ",action.payload);
 			return state;
