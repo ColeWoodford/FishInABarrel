@@ -23,7 +23,7 @@ function InventoryReducer(state = initialState, action) {
 				...state,
 				size: action.payload.inv.size,
 				money: action.payload.inv.money,
-				items: [...state.items, action.payload.rod]
+				items: [...state.items, action.payload.rod, action.payload.bait]
 			};
 		case actions.CREATE_INVENTORY_FAILURE:
 			console.log("Failed ", action.payload);

@@ -25,7 +25,6 @@ function* deleteUser(action) {
 function* getUserInfo(action) {
 	try{
 		const inventory = yield call(getInventory, action.payload);
-		console.log("SAGA:",JSON.stringify(inventory,null,4));
 		yield put({type: actions.GET_USER_INFO_SUCCESS, payload: inventory})
 	} catch (e) {
 		yield put({type: actions.GET_USER_INFO_FAILURE, payload: e.message});

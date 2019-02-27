@@ -6,6 +6,9 @@ export const actions = {
 	NEW_LAKE: 'NEW_LAKE',
 	NEW_LAKE_SUCCESS: 'NEW_LAKE_SUCCESS',
 	NEW_LAKE_FAILURE: 'NEW_LAKE_FAILURE',
+	CATCH_FISH: 'CATCH_FISH',
+	CATCH_FISH_SUCCESS: 'CATCH_FISH_SUCCESS',
+	CATCH_FISH_FAILURE: 'CATCH_FISH_FAILURE',
 }
 
 export const selectTile = () => ({
@@ -22,3 +25,8 @@ export const newLake = (name = "") => ({
 	type: actions.NEW_LAKE,
 	payload: name,
 });
+
+export const catchFish = (user = {}) => ({
+	type: actions.CATCH_FISH,
+	payload: user,
+})

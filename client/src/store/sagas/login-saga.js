@@ -5,6 +5,7 @@ import { login, createUser } from '../api/login-api';
 import { createInventory } from '../api/inventory-api';
 import { createInventoryItem } from '../api/inventoryItem-api';
 import { bambooRod } from '../assets/fishingRods';
+import { worms } from '../assets/baits';
 
 function* loginUser(action) {
 	try {
@@ -35,10 +36,13 @@ function* createNewUser(action) {
 			yield put ({type: actions.CREATE_USER_SUCCESS, payload: user});
 			const inventory = yield call(createInventory, user);
 			const firstRod = bambooRod;
+			const firstBait = worms;
 			firstRod.id = inventory.id;
+			firstBait.id = inventory.id;
 			const fishingRod = yield call(createInventoryItem, firstRod);
+			const bait = yield call(createInventoryItem, firstBait);
 			if (inventory !== null) {
-				yield put ({type: invActions.CREATE_INVENTORY_SUCCESS, payload: {inv: inventory, rod: fishingRod}});
+				yield put ({type: invActions.CREATE_INVENTORY_SUCCESS, payload: {inv: inventory, rod: fishingRod, bait: bait}});
 			} else {
 				yield put ({type: invActions.CREATE_INVENTORY_FAILURE, payload: "create inventory"});
 			}
