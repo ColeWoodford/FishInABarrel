@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actions } from '../actions/user-actions';
 import { getAllUsers, destroyUser } from '../api/user-api';
-import { getInventory, destroyInventory } from '../api/inventory-api';
+import { getInventory } from '../api/inventory-api';
 
 function* getUsers(action) {
 	try {

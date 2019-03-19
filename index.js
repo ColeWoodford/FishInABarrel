@@ -35,7 +35,11 @@ io.on('connection', function(socket){
 	socket.on('client message', function(msg) {
 		console.log("broadcasting message: ", msg);
 		io.emit('chat message', msg);
-	})
+	});
+	socket.on('fish request', function(msg) {
+		console.log("fish request from ", msg);
+		io.emit('fish response', "fishy");
+	});
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });

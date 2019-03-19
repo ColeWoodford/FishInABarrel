@@ -11,6 +11,10 @@ class Tile extends Component {
 		this.state = {
 			count: 0,
 		}
+		const { socket } = this.props;
+		socket.on('fish response', (msg) => {
+			console.log(msg);
+		});
 	}
 
 	componentDidMount() {
@@ -41,8 +45,10 @@ class Tile extends Component {
 			})
 		} else {
 			//Get a fish for the user!
-			const { username } = this.props;
-			this.props.catchFish(username);
+			const { username, socket } = this.props;
+			// this.props.catchFish(username);
+			socket.emit('fish request', username);
+			console.log("HERE")
 			this.setState({
 				count: ++this.state.count,
 				display: this.state.count,

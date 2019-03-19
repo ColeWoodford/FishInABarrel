@@ -9,6 +9,12 @@ module.exports = (sequelize, type) => {
 			type: type.STRING,
 			allowNull: false
 		},
+		fish_caught: {
+			type: type.INTEGER
+		},
+		fish_released: {
+			type: type.INTEGER
+		}
 	},
 	{
 		timestamp: false,

@@ -48,6 +48,7 @@ db.bait = require('../models/bait')(sequelize, Sequelize);
 db.caughtFish = require('../models/caughtfish')(sequelize, Sequelize);
 
 db.fish.belongsTo(db.lake, {onDelete: 'cascade', hooks: true});
+db.inventory.hasMany(db.fish, {onDelete: 'cascade', hooks: true});
 
 db.user.belongsTo(db.lake, {onDelete: 'cascade', hooks: true});
 db.inventory.belongsTo(db.user, {onDelete: 'cascade', hooks: true});

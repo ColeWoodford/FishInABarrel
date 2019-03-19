@@ -5,7 +5,8 @@ module.exports = (app, db) => {
 			lakeId: req.params.lakeId,
 			name: req.body.name,
 			level: req.body.level,
-			value: req.body.value
+			value: req.body.value,
+			times_caught: req.body.times_caught
 		})
 			.then(fish => res.json(fish))
 	})

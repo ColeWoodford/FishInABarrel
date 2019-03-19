@@ -13,6 +13,9 @@ module.exports = (sequelize, type) => {
 		},
 		value: {
 			type: type.INTEGER
+		},
+		times_caught: {
+			type: type.INTEGER
 		}
 	})
 }

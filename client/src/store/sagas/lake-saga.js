@@ -32,7 +32,8 @@ function* newLake(action) {
 
 function* catchFish(action) {
 	try{
-		console.log("FISH CAUGHT!");
+		
+		yield put ({type: actions.CATCH_FISH_SUCCESS, payload: action.payload})
 	} catch (e) {
 		yield put({type: actions.CATCH_FISH_FAILURE, payload: e.message});
 	}

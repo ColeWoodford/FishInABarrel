@@ -47,7 +47,7 @@ class Chat extends Component {
     const { message } = this.state;
     if (message !== "") {
       event.preventDefault();
-      socket.emit('client message', message);
+      socket.emit('client message',  (this.state.user + ": " + this.state.message));
       this.setState({
         message: ""
       });

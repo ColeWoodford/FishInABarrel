@@ -30,35 +30,35 @@ class Lake extends Component {
         <LakeContainer>
           <Row>
             <Col>
-              <Tile />
+              <Tile socket={this.props.socket} />
             </Col>
             <Col>
-              <Tile />
+              <Tile socket={this.props.socket} />
             </Col>
             <Col>
-              <Tile />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Tile />
-            </Col>
-            <Col>
-              <Tile />
-            </Col>
-            <Col>
-              <Tile />
+              <Tile socket={this.props.socket} />
             </Col>
           </Row>
           <Row>
             <Col>
-              <Tile />
+              <Tile socket={this.props.socket} />
             </Col>
             <Col>
-              <Tile />
+              <Tile socket={this.props.socket} />
             </Col>
             <Col>
-              <Tile />
+              <Tile socket={this.props.socket} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Tile socket={this.props.socket} />
+            </Col>
+            <Col>
+              <Tile socket={this.props.socket} />
+            </Col>
+            <Col>
+              <Tile socket={this.props.socket} />
             </Col>
           </Row>
         </LakeContainer>
