@@ -30,14 +30,26 @@ if (process.env.NODE_ENV == 'production') {
 	});
 }
 
+var fishersList = [];
+
+function resolveFishers() {
+	console.log("Checking for fishers:");
+	fishersList.forEach(username => {
+		console.log("handle ",username," fisher");
+		//get a fish from database and assign to player inv
+	});
+}
+setInterval(resolveFishers, 10000);
+
 io.on('connection', function(socket){
 	console.log('a user connected');
 	socket.on('client message', function(msg) {
 		console.log("broadcasting message: ", msg);
 		io.emit('chat message', msg);
 	});
-	socket.on('fish request', function(msg) {
-		console.log("fish request from ", msg);
+	socket.on('fish request', function(username) {
+		console.log("fish request from ", username);
+		fishersList.push(username);
 		io.emit('fish response', "fishy");
 	});
   socket.on('disconnect', function(){

@@ -46,9 +46,7 @@ class Tile extends Component {
 		} else {
 			//Get a fish for the user!
 			const { username, socket } = this.props;
-			// this.props.catchFish(username);
 			socket.emit('fish request', username);
-			console.log("HERE")
 			this.setState({
 				count: ++this.state.count,
 				display: this.state.count,
