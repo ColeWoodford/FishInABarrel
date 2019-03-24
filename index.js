@@ -5,6 +5,7 @@ const io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 const db = require('./server/config/sequelize');
 const path = require('path');
+const fetch = require('node-fetch');
 
 io.set('origins', '*localhost:3000*:*');
 
@@ -36,7 +37,7 @@ function resolveFishers() {
 	console.log("Checking for fishers:");
 	fishersList.forEach(fisher => {
 		console.log("handle ",fisher.name," fisher");
-		const fish = window.fetch(`/api/fishes/${fisher.level}`, {
+		const fish = fetch(`/api/fishes/${fisher.level}`, {
 			method: 'GET',
 			headers: {
 				"Accept": "application/json",
