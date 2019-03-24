@@ -37,7 +37,7 @@ function resolveFishers() {
 	console.log("Checking for fishers:");
 	fishersList.forEach(fisher => {
 		console.log("handle ",fisher.name," fisher");
-		const fish = fetch(`/api/fishes/${fisher.level}`, {
+		const fish = fetch(`/api/fishes/level/${fisher.level}`, {
 			method: 'GET',
 			headers: {
 				"Accept": "application/json",
@@ -53,6 +53,7 @@ function resolveFishers() {
 
 		//fish now has list of fish. Randomly select one to catch.
 	});
+	fishersList = [];
 }
 setInterval(resolveFishers, 10000);
 
