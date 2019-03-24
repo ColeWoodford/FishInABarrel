@@ -37,7 +37,8 @@ function resolveFishers() {
 	console.log("Checking for fishers:");
 	fishersList.forEach(fisher => {
 		console.log("handle ",fisher.name," fisher");
-		const fish = fetch(`/api/fishes/level/${fisher.level}`, {
+		
+		const fish = fetch(path.resolve(__dirname, `/api/fishes/level/${fisher.level}`), {
 			method: 'GET',
 			headers: {
 				"Accept": "application/json",
