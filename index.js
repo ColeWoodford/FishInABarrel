@@ -35,7 +35,7 @@ var fishersList = [];
 function resolveFishers() {
 	console.log("Checking for fishers:");
 	fishersList.forEach(fisher => {
-		console.log("handle ",username," fisher");
+		console.log("handle ",fisher.name," fisher");
 		const fish = fetch(`/api/fishes/${fisher.level}`, {
 			method: 'GET',
 			headers: {
