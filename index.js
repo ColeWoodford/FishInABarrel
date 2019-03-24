@@ -40,7 +40,7 @@ function resolveFishers() {
 		console.log("handle ",fisher.name," fisher");
 		const baseURL = url.host
 
-		const fish = fetch(`http://localhost:8000/api/fishes/level/2`, {
+		const fish = fetch(process.env.DATABASE_URL + `/api/fishes/level/2`, {
 			method: 'GET',
 			headers: {
 				"Accept": "application/json",
