@@ -36,9 +36,19 @@ function resolveFishers() {
 	console.log("Checking for fishers:");
 	fishersList.forEach(fisher => {
 		console.log("handle ",fisher.name," fisher");
-		app.get(`/api/fishes/level/${fisher.level}`, (request, response) => {
-			console.log(JSON.stringify(response,null,4));
+		const fish = window.fetch(`/api/fishes/${fisher.level}`, {
+			method: 'GET',
+			headers: {
+				"Accept": "application/json",
+			}
 		})
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(myJson) {
+			console.log(JSON.stringify(myJson,null,4));
+			return myJson;
+		});
 
 		//fish now has list of fish. Randomly select one to catch.
 	});
