@@ -34,9 +34,23 @@ var fishersList = [];
 
 function resolveFishers() {
 	console.log("Checking for fishers:");
-	fishersList.forEach(username => {
+	fishersList.forEach(fisher => {
 		console.log("handle ",username," fisher");
-		//get a fish from database and assign to player inv
+		const fish = fetch(`/api/fishes/${fisher.level}`, {
+			method: 'GET',
+			headers: {
+				"Accept": "application/json",
+			}
+		})
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(myJson) {
+			console.log(JSON.stringify(myJson,null,4));
+			return myJson;
+		});
+
+		//fish now has list of fish. Randomly select one to catch.
 	});
 }
 setInterval(resolveFishers, 10000);
@@ -47,9 +61,9 @@ io.on('connection', function(socket){
 		console.log("broadcasting message: ", msg);
 		io.emit('chat message', msg);
 	});
-	socket.on('fish request', function(username) {
-		console.log("fish request from ", username);
-		fishersList.push(username);
+	socket.on('fish request', function(fisher) {
+		console.log("fish request from ", fisher.name);
+		fishersList.push(fisher);
 		io.emit('fish response', "fishy");
 	});
   socket.on('disconnect', function(){

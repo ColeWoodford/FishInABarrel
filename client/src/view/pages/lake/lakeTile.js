@@ -37,6 +37,17 @@ class Tile extends Component {
 		})
 	}
 
+	calculateFishingLevel = () => {
+		const { items } = this.props;
+		let fishingLevel = 0;
+		items.forEach(item => {
+			if (item.category === "equipedRod" || item.category === "equipedBait") {
+				fishingLevel += item.level;
+			}
+		})
+		return fishingLevel;
+	}
+
 	handleClick = () => {
 		if (this.state.firstFlag === true) {
 			this.setState({
@@ -46,7 +57,10 @@ class Tile extends Component {
 		} else {
 			//Get a fish for the user!
 			const { username, socket } = this.props;
-			socket.emit('fish request', username);
+			socket.emit('fish request', {
+				name: username,
+				level: this.calculateFishingLevel()
+			});
 			this.setState({
 				count: ++this.state.count,
 				display: this.state.count,
@@ -69,6 +83,7 @@ class Tile extends Component {
 function mapStateToProps(state) {
   return {
 		username: state.LoginReducer.username,
+		items: state.InventoryReducer.items,
   };
 }
 
