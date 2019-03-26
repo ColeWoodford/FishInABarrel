@@ -40,7 +40,7 @@ function resolveFishers() {
 		console.log("handle ",fisher.name," fisher");
 		const baseURL = url.host
 
-		reqURL = "https://secure-bastion-35148.herokuapp.com" + `/api/fishes/level/${fisher.level}`
+		reqURL = "https://secure-bastion-35148.herokuapp.com"+`/api/fishes/level/${fisher.level}`
 
 		console.log("HERE:",reqURL);
 
