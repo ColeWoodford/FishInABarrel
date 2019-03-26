@@ -40,7 +40,7 @@ function resolveFishers() {
 		console.log("handle ",fisher.name," fisher");
 		const baseURL = url.host
 
-		reqURL = "https://" + process.env.DATABASE_URL + `/api/fishes/level/${fisher.level}`
+		reqURL = "https://localhost:3000" + `/api/fishes/level/${fisher.level}`
 
 		console.log("HERE:",reqURL);
 
