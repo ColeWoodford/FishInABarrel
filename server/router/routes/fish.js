@@ -19,7 +19,7 @@ module.exports = (app, db) => {
 			}
 		})
 		.then(fish => {
-			fish.updateAttributes({
+			fish.update({
 				lakeId: null
 			});
 		});
