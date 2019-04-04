@@ -63,15 +63,18 @@ function resolveFishers() {
 			//Add the selected fish to our used list so we do not use it again
 			usedFishList.push(fishId);
 			//Update the fish to have lakeId equal null to let the user try to catch it
-			const updatedFish = fetch(reqURL+`/api/fishes/removelake/${fishId}`, {
-				method: 'PUT',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				}
-			})
-			.then(response => response.json());
-			console.log("Updated fish ", JSON.stringify(updatedFish,null,4));
+			const putrequest = async () => {
+				const putresponse = await fetch(reqURL+`/api/fishes/removelake/${fishId}`, {
+					method: 'PUT',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					}
+				});
+				const updatedFish = await putresponse.text();
+				console.log("updated:", updatedFish);
+			}
+			putrequest();
 		}
 
 		request();
