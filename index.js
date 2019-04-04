@@ -65,7 +65,7 @@ function resolveFishers() {
 			//Update the fish to have lakeId equal null to let the user try to catch it
 			const putrequest = async () => {
 				const putresponse = await fetch(reqURL+`/api/fishes/removelake/${fishId}`, {
-					method: 'PUT',
+					method: 'POST',
 					headers: {
 						'Accept': 'application/json',
 						'Content-Type': 'application/json'
