@@ -42,7 +42,7 @@ function resolveFishers() {
 
 		reqURL = "https://secure-bastion-35148.herokuapp.com"+`/api/fishes/level/${fisher.level}`;
 
-		const fish = fetch(reqURL, {
+		const fish = await fetch(reqURL, {
 			method: 'GET',
 			headers: {
 				"Accept": "application/json",
