@@ -57,26 +57,28 @@ function resolveFishers() {
 
 		console.log("FISH: ",JSON.stringify(fish,null,4));
 		//Find an unused fish to assign to the fisher
-		let randomFishIndex = Math.floor(Math.random() * fish.length);
-		console.log("Random=",randomFishIndex);
-		fishId = fish[randomFishIndex].id;
-		while (usedFishList.includes(fishId)) {
-			randomFishIndex = Math.floor(Math.random() * fish.length);
+		if (fish) {
+			let randomFishIndex = Math.floor(Math.random() * fish.length);
 			console.log("Random=",randomFishIndex);
-			fishId = fish[randomFishIndex].id; 
-		}
-		//Add the selected fish to our used list so we do not use it again
-		usedIndexList.push(fishId);
-		//Update the fish to have lakeId equal null to let the user try to catch it
-		const updatedFish = fetch(reqURL+`api/fishes/removelake/${fishId}`, {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
+			fishId = fish[randomFishIndex].id;
+			while (usedFishList.includes(fishId)) {
+				randomFishIndex = Math.floor(Math.random() * fish.length);
+				console.log("Random=",randomFishIndex);
+				fishId = fish[randomFishIndex].id; 
 			}
-		})
-		.then(response => response.json());
-		console.log("Updated fish ", fishId);
+			//Add the selected fish to our used list so we do not use it again
+			usedIndexList.push(fishId);
+			//Update the fish to have lakeId equal null to let the user try to catch it
+			const updatedFish = fetch(reqURL+`api/fishes/removelake/${fishId}`, {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				}
+			})
+			.then(response => response.json());
+			console.log("Updated fish ", fishId);
+		}
 	});
 	usedFishList = [];
 	fishersList = [];
