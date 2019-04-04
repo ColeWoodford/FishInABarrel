@@ -64,7 +64,7 @@ function resolveFishers() {
 			usedFishList.push(fishId);
 			//Update the fish to have lakeId equal null to let the user try to catch it
 			const updatedFish = fetch(reqURL+`api/fishes/removelake/${fishId}`, {
-				method: 'POST',
+				method: 'PUT',
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
