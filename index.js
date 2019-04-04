@@ -52,6 +52,7 @@ function resolveFishers() {
 			return response.json();
 		})
 		.then(function(myJson) {
+			console.log("HERE",JSON.stringify(myJson,null,4));
 			return myJson;
 		});
 
