@@ -33,18 +33,16 @@ if (process.env.NODE_ENV == 'production') {
 }
 
 var fishersList = [];
+var usedFishList = [];
 
 function resolveFishers() {
 	console.log("Checking for fishers:");
 	fishersList.forEach(fisher => {
 		console.log("handle ",fisher.name," fisher");
-		const baseURL = url.host
 
-		reqURL = "https://secure-bastion-35148.herokuapp.com"+`/api/fishes/level/${fisher.level}`
+		reqURL = "https://secure-bastion-35148.herokuapp.com";
 
-		console.log("HERE:",reqURL);
-
-		const fish = fetch(reqURL, {
+		const fish = fetch(reqURL+`/api/fishes/level/${fisher.level}`, {
 			method: 'GET',
 			headers: {
 				"Accept": "application/json",
@@ -54,12 +52,30 @@ function resolveFishers() {
 			return response.json();
 		})
 		.then(function(myJson) {
-			console.log(JSON.stringify(myJson,null,4));
 			return myJson;
 		});
 
-		//fish now has list of fish. Randomly select one to catch.
+		//Find an unused fish to assign to the fisher
+		let randomFishIndex = Math.floor(Math.random() * (sizeOf(fish)));
+		fishId = fish[randomFishIndex].id;
+		while (usedFishList.includes(fishId)) {
+			randomFishIndex = Math.floor(Math.random() * (sizeOf(fish)));
+			fishId = fish[randomFishIndex].id;
+		}
+		//Add the selected fish to our used list so we do not use it again
+		usedIndexList.push(fishId);
+		//Update the fish to have lakeId equal null to let the user try to catch it
+		const updatedFish = fetch(reqURL+`api/fishes/removelake/${fishId}`, {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(response => response.json());
+		console.log("Updated fish ", fishId);
 	});
+	usedFishList = [];
 	fishersList = [];
 }
 setInterval(resolveFishers, 10000);

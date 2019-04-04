@@ -11,6 +11,17 @@ module.exports = (app, db) => {
 		})
 			.then(fish => res.json(fish))
 	})
+	//null lakeId for fish
+	app.post('api/fishes/removelake/:fishId', (req, res) => {
+		db.fish.findOne({  
+			id: req.params.fishId
+		})
+		.then(fish => {
+			fish.updateAttributes({
+				lakeId: null
+			});
+		});
+	})
 	// get all fish
 	app.get('/api/fishes', (req, res) => {
 		db.fish.findAll().then(fishes => res.json(fishes))
@@ -19,7 +30,8 @@ module.exports = (app, db) => {
 	app.get('/api/fishes/level/:level', (req, res) => {
 		db.fish.findAll({
 			where: {
-				level: {[Op.lt]: req.params.level}
+				level: {[Op.lt]: req.params.level},
+				lakeId: {[Op.ne]: null}
 			}
 		}).then(fishes => res.json(fishes))
 	})
