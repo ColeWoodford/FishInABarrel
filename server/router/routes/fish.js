@@ -12,17 +12,20 @@ module.exports = (app, db) => {
 			.then(fish => res.json(fish))
 	})
 	//null lakeId for fish
-	app.post('/api/fishes/removelake/:fishId', (req, res) => {
+	app.patch('/api/fishes/removelake/:fishId', (req, res) => {
 		db.fish.findOne({
 			where: {
 				id: req.params.fishId
 			}
 		})
 		.then(fish => {
-			fish.update({
+			return fish.updateAttributes({
 				lakeId: null
-			});
-		});
+			})
+		})
+		.then(updatedFish => {
+			res.json(updatedFish);
+		})
 	})
 	// get all fish
 	app.get('/api/fishes', (req, res) => {
