@@ -30,8 +30,7 @@ module.exports = (app, db) => {
 	app.get('/api/fishes/level/:level', (req, res) => {
 		db.fish.findAll({
 			where: {
-				level: {[Op.lt]: req.params.level},
-				lakeId: {[Op.ne]: null}
+				level: {[Op.lt]: req.params.level}
 			}
 		}).then(fishes => res.json(fishes))
 	})
