@@ -63,7 +63,7 @@ function resolveFishers() {
 		while (usedFishList.includes(fishId)) {
 			randomFishIndex = Math.floor(Math.random() * fish.length);
 			console.log("Random=",randomFishIndex);
-			fishId = fish[randomFishIndex].id;
+			fishId = fish[randomFishIndex].id; 
 		}
 		//Add the selected fish to our used list so we do not use it again
 		usedIndexList.push(fishId);
