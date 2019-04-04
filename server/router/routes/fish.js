@@ -13,8 +13,10 @@ module.exports = (app, db) => {
 	})
 	//null lakeId for fish
 	app.post('/api/fishes/removelake/:fishId', (req, res) => {
-		db.fish.findOne({  
-			id: req.params.fishId
+		db.fish.findOne({
+			where: {
+				id: req.params.fishId
+			}
 		})
 		.then(fish => {
 			fish.updateAttributes({
