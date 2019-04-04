@@ -61,7 +61,7 @@ function resolveFishers() {
 				fishId = fish[randomFishIndex].id; 
 			}
 			//Add the selected fish to our used list so we do not use it again
-			usedIndexList.push(fishId);
+			usedFishList.push(fishId);
 			//Update the fish to have lakeId equal null to let the user try to catch it
 			const updatedFish = fetch(reqURL+`api/fishes/removelake/${fishId}`, {
 				method: 'POST',
