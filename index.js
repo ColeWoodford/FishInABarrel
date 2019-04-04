@@ -42,21 +42,20 @@ function resolveFishers() {
 
 		reqURL = "https://secure-bastion-35148.herokuapp.com"+`/api/fishes/level/${fisher.level}`;
 
-		const fish = await fetch(reqURL, {
-			method: 'GET',
-			headers: {
-				"Accept": "application/json",
-			}
-		})
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(myJson) {
-			console.log("HERE",JSON.stringify(myJson,null,4));
-			return myJson;
-		});
+		const request = async () => {
+			const response = await fetch(reqURL, {
+				method: 'GET',
+				headers: {
+					"Accept": "application/json",
+				}
+			});
+			const fish = await response.json();
+			console.log("HERE",fish);
+		}
 
-		console.log("FISH: ",JSON.stringify(fish,null,4));
+		request();
+
+		console.log("FISH: ",JSON.stringify(request,null,4));
 		//Find an unused fish to assign to the fisher
 	// 	let randomFishIndex = Math.floor(Math.random() * fish.length);
 	// 	console.log("Random=",randomFishIndex);
