@@ -56,10 +56,10 @@ function resolveFishers() {
 		});
 
 		//Find an unused fish to assign to the fisher
-		let randomFishIndex = Math.floor(Math.random() * (sizeOf(fish)));
+		let randomFishIndex = Math.floor(Math.random() * fish.length);
 		fishId = fish[randomFishIndex].id;
 		while (usedFishList.includes(fishId)) {
-			randomFishIndex = Math.floor(Math.random() * (sizeOf(fish)));
+			randomFishIndex = Math.floor(Math.random() * fish.length);
 			fishId = fish[randomFishIndex].id;
 		}
 		//Add the selected fish to our used list so we do not use it again
