@@ -71,7 +71,7 @@ function resolveFishers() {
 						'Content-Type': 'application/json'
 					}
 				});
-				const updatedFish = await putresponse.text();
+				const updatedFish = await putresponse.json();
 				console.log("updated:", updatedFish);
 				io.emit('fish assigned', updatedFish.id);
 			}
