@@ -12,7 +12,7 @@ class Tile extends Component {
 			count: 0,
 		}
 		const { socket } = this.props;
-		socket.on('fish response', (msg) => {
+		socket.on('fish assigned', (msg) => {
 			console.log(msg);
 		});
 	}

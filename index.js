@@ -73,6 +73,7 @@ function resolveFishers() {
 				});
 				const updatedFish = await putresponse.text();
 				console.log("updated:", updatedFish);
+				io.emit('fish assigned', updatedFish.id);
 			}
 			putrequest();
 		}
@@ -93,7 +94,6 @@ io.on('connection', function(socket){
 	socket.on('fish request', function(fisher) {
 		console.log("fish request from ", fisher.name);
 		fishersList.push(fisher);
-		io.emit('fish response', "fishy");
 	});
   socket.on('disconnect', function(){
     console.log('user disconnected');
