@@ -26,3 +26,18 @@ export const postLake = (data = {}) => {
 	})
 		.then(response => response.json());
 }
+
+export const catchAssignedFish = (catchPayload = {inventoryId: 0, fishId: 0}) => {
+	return fetch(`/api/fishes/inventory/${catchPayload.inventoryId}/catchfish/${catchPayload.fishId}`, {
+		method: "PATCH",
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(response => response.json());
+}
+
+export const releaseAssignedFish = () => {
+
+}
