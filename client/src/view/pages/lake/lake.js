@@ -2,12 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { LakeContainer, Row, Col } from './lakeTile-sc';
-import { getLakes } from '../../../store/actions/lake-actions';
+import { getLakes, catchFish } from '../../../store/actions/lake-actions';
 import Chat from '../../chat';
 import Tile from './lakeTile';
 import Inventory from './inventory/inventory';
 
 class Lake extends Component {
+  constructor(props) {
+    super(props);
+
+    const { socket, catchFish, userId } = this.props;
+		socket.on('fish assigned', (msg) => {
+      catchFish({
+        user: userId,
+        fish: msg
+      });
+			console.log(msg);
+		});
+  }
+
 	componentWillMount() {
 		this.props.getLakes();
   }
@@ -84,12 +97,16 @@ class Lake extends Component {
 function mapStateToProps(state) {
   return {
       username: state.LoginReducer.username,
+      userId: state.LoginReducer.id,
       lakes: state.LakesReducer.lakes
   };
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ getLakes: getLakes }, dispatch);
+	return bindActionCreators({
+    getLakes: getLakes,
+    catchFish: catchFish
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lake);

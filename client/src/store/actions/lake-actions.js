@@ -26,7 +26,7 @@ export const newLake = (name = "") => ({
 	payload: name,
 });
 
-export const catchFish = (user = {}) => ({
+export const catchFish = (userAndFish = {user: 0, fish: 0}) => ({
 	type: actions.CATCH_FISH,
-	payload: user,
+	payload: userAndFish,
 })

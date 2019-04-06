@@ -31,9 +31,15 @@ function* newLake(action) {
 }
 
 function* catchFish(action) {
+	const { user, fish } = action.payload;
+	let txt = "";
 	try{
-		
-		yield put ({type: actions.CATCH_FISH_SUCCESS, payload: action.payload})
+		if(window.confirm("Catch the fish?")) {
+			txt = "You caught the fish!";
+		} else {
+			txt = "You released the fish!";
+		}
+		yield put ({type: actions.CATCH_FISH_SUCCESS, payload: txt})
 	} catch (e) {
 		yield put({type: actions.CATCH_FISH_FAILURE, payload: e.message});
 	}

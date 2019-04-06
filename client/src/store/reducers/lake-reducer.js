@@ -22,6 +22,9 @@ function LakesReducer(state = initialState, action) {
 		case actions.NEW_LAKE_FAILURE:
 			console.log("Failed ", action.payload);
 			return state;
+		case actions.CATCH_FISH_SUCCESS:
+			window.alert(action.payload);
+			return state;
 		default:		
 			return state
 	}

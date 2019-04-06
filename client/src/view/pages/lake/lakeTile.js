@@ -11,10 +11,6 @@ class Tile extends Component {
 		this.state = {
 			count: 0,
 		}
-		const { socket } = this.props;
-		socket.on('fish assigned', (msg) => {
-			console.log(msg);
-		});
 	}
 
 	componentDidMount() {
