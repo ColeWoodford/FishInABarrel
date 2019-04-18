@@ -33,6 +33,7 @@ function* newLake(action) {
 
 function* catchFish(action) {
 	const { user, lake } = action.payload;
+	console.log("HERE", user);
 	let txt = "";
 	let caughtFish
 	try{
