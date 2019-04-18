@@ -98,7 +98,7 @@ class Lake extends Component {
 function mapStateToProps(state) {
   return {
       username: state.LoginReducer.username,
-      userId: state.LoginReducer.id,
+      userId: state.LoginReducer.userId,
       lakes: state.LakesReducer.lakes
   };
 }
