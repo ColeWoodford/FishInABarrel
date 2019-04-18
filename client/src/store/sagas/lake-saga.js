@@ -43,7 +43,6 @@ function* catchFish(action) {
 				fishId: action.payload.fish
 			}
 			this.caughtFish = yield call(catchAssignedFish, catchPayload);
-			console.log("SAGA");
 			txt = "You caught the fish!";
 		} else {
 			txt = "You released the fish!";

@@ -40,11 +40,7 @@ function resolveFishers() {
 	fishersList.forEach(fisher => {
 		console.log("handle ",fisher.name," fisher");
 
-		if (process.env.PORT) {
-			reqURL = "https://secure-bastion-35148.herokuapp.com";
-		} else {
-			reqURL = "localhost:8000"
-		}
+		reqURL = "https://secure-bastion-35148.herokuapp.com";
 
 		const request = async () => {
 			const response = await fetch(reqURL+`/api/fishes/level/${fisher.level}`, {
