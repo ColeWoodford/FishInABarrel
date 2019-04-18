@@ -1,4 +1,5 @@
 import { actions } from '../actions/lake-actions';
+import { strictEqual } from 'assert';
 
 const initialState = {
 		lakes: [],
@@ -15,12 +16,13 @@ function LakesReducer(state = initialState, action) {
 			console.log("Failed to get lakes: ",action.payload);
 			return state;
 		case actions.NEW_LAKE_SUCCESS:
-			return Object.assign({}, state, {
+			return {
+				...state,
 				currentLake: action.payload,
 				lakes: [...state.lakes, action.payload]
-			});
+			}
 		case actions.NEW_LAKE_FAILURE:
-			console.log("Failed ", action.payload);
+			console.log("Failed to create new lake: ", action.payload);
 			return state;
 		case actions.CATCH_FISH_SUCCESS:
 			window.alert(action.payload.msg);
