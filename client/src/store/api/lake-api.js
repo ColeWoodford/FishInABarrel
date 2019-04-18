@@ -38,6 +38,13 @@ export const catchAssignedFish = (catchPayload = {inventoryId: 0, fishId: 0}) =>
 		.then(response => response.json());
 }
 
-export const releaseAssignedFish = () => {
-
+export const releaseAssignedFish = (catchPayload = {lakeId: 0, fishId: 0}) => {
+	return fetch(`/api/fishes/lake/${catchPayload.lakeId}/releasefish/${catchPayload.fishId}`, {
+		method: "PATCH",
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(response => response.json());
 }

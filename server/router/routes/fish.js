@@ -60,4 +60,21 @@ module.exports = (app, db) => {
 			res.json(updatedFish);
 		})
 	})
+
+	//release a fish by assigning it to the lake
+	app.patch('/api/fishes/lake/:lakeId/releasefish/:fishId', (req, res) => {
+		db.fish.findOne({
+			where: {
+				id: req.params.fishId
+			}
+		})
+		.then(fish => {
+			return fish.updateAttributes({
+				lakeId: req.params.lakeId
+			})
+		})
+		.then(updatedFish => {
+			res.json(updatedFish);
+		})
+	})
 };

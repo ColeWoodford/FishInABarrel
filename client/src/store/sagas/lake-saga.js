@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actions } from '../actions/lake-actions';
-import { getLake, postLake, catchAssignedFish } from '../api/lake-api';
+import { getLake, postLake, catchAssignedFish, releaseAssignedFish } from '../api/lake-api';
 import { createFish } from '../api/fish-api';
 import { trout } from '../assets/fish';
 import { getInventory } from '../api/inventory-api';
@@ -32,7 +32,7 @@ function* newLake(action) {
 }
 
 function* catchFish(action) {
-	const { user } = action.payload;
+	const { user, lake } = action.payload;
 	let txt = "";
 	let caughtFish
 	try{
@@ -45,6 +45,11 @@ function* catchFish(action) {
 			this.caughtFish = yield call(catchAssignedFish, catchPayload);
 			txt = "You caught the fish!";
 		} else {
+			const releasePayload = {
+				lakeId: lake,
+				fishId: action.payload.fish
+			}
+			this.caughtFish = yield call(releaseAssignedFish, releasePayload);
 			txt = "You released the fish!";
 		}
 		yield put ({type: actions.CATCH_FISH_SUCCESS, payload: {fish: caughtFish, msg: txt}})

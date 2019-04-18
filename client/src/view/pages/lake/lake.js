@@ -11,11 +11,12 @@ class Lake extends Component {
   constructor(props) {
     super(props);
 
-    const { socket, catchFish, userId } = this.props;
+    const { socket, catchFish, userId, lakes } = this.props;
 		socket.on('fish assigned', (msg) => {
       catchFish({
         user: userId,
-        fish: msg
+        fish: msg,
+        lake: lakes[0].id
       });
 			console.log(msg);
 		});
