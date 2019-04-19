@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { getInventory } from '../api/inventory-api';
 import { getInventoryItems, getFishItems } from '../api/inventoryItem-api';
 import { actions } from '../actions/inventory-actions';
-import { lakeActions } from '../actions/lake-actions';
+import { actions as lakeActions } from '../actions/lake-actions';
 
 function* getInv(action) {
 	try {
