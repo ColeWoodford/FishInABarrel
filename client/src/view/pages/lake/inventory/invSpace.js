@@ -34,7 +34,7 @@ class InvSpace extends Component {
 
     if (bag !== size) {
       items = this.state.items.filter((item) => {
-        if (item.name === id) {
+        if (item.id === id) {
           item.category = cat;
         }
         return item;
@@ -54,7 +54,7 @@ class InvSpace extends Component {
 
     if (full === 0) {
       items = this.state.items.filter((item) => {
-        if (item.name === id && item.type === "rod") {
+        if (item.id === id && item.type === "rod") {
           item.category = cat;
         }
         return item;
@@ -74,7 +74,7 @@ class InvSpace extends Component {
 
     if (full === 0) {
       items = this.state.items.filter((item) => {
-        if (item.name === id && item.type === "bait") {
+        if (item.id === id && item.type === "bait") {
           item.category = cat;
         }
         return item;
@@ -97,8 +97,8 @@ class InvSpace extends Component {
     this.state.items.forEach ((t) => {
       items[t.category].push(
       <Item
-        key={t.name}
-        onDragStart={(e)=>this.onDragStart(e, t.name)}
+        key={t.id}
+        onDragStart={(e)=>this.onDragStart(e, t.id)}
         draggable
         className="draggable"
         style={{backgroundColor: t.bgcolor}}>
