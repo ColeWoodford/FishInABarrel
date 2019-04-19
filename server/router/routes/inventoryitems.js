@@ -17,6 +17,15 @@ module.exports = (app, db) => {
 		})
 		.then(inventoryitems => res.json(inventoryitems));
 	})
+	//get an inventory's fish
+	app.get('/api/fishitems/:invId', (req, res) => {
+		db.fish.findAll({
+			where: {
+				inventoryId: req.params.invId
+			}
+		})
+		.then(fishitems => res.json(fishitems));
+	})
 	// Delete a inventory item
 	app.delete('/api/inventoryitems/:id', (req, res) => {
 		db.inventoryitem.destroy({
