@@ -35,7 +35,7 @@ function LakesReducer(state = initialState, action) {
 				...state,
 				caughtFish: [...state.caughtFish, action.payload.fish]
 			};
-		case actions.GET_INVENTORY_SUCCESS:
+			case actions.GET_FISH_SUCCESS:
 			return {
 				...state,
 				caughtFish: action.payload
