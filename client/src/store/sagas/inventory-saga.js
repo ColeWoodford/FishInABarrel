@@ -13,7 +13,7 @@ function* getInv(action) {
 			yield put({type: actions.GET_INVENTORY_SUCCESS, payload: {inventory, items}});
 		}
 		if (fish !== null) {
-			yield put({type: actions.GET_FISH_SUCCESS, payload: fish});
+			yield put({type: lakeActions.GET_FISH_SUCCESS, payload: fish});
 		}
 	} catch (e) {
 		yield put({type: actions.GET_INVENTORY_FAILURE, payload: e.message});
