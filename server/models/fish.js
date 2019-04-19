@@ -16,6 +16,15 @@ module.exports = (sequelize, type) => {
 		},
 		times_caught: {
 			type: type.INTEGER
-		}
+		},
+		category: {
+      type: type.STRING
+    },
+    type: {
+      type: type.STRING
+    },
+    bgcolor: {
+      type: type.STRING
+    }
 	})
 }

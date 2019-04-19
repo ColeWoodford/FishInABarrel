@@ -8,6 +8,9 @@ module.exports = (app, db) => {
 			name: req.body.name,
 			level: req.body.level,
 			value: req.body.value,
+			category: "inBag",
+			type: "fish",
+			bgcolor: "blue",
 			times_caught: req.body.times_caught
 		})
 			.then(fish => res.json(fish))
