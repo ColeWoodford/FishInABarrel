@@ -12,7 +12,8 @@ class Inventory extends Component {
 
 	render() {
     const { size, money, items, fish } = this.props;
-    let allItems = items.concat(fish);
+    let allItems = [];
+    allItems = items.concat(fish);
     return (
 			<div>
         <p>Money: {money}</p>
