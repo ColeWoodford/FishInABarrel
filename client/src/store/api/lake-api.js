@@ -35,7 +35,8 @@ export const catchAssignedFish = (catchPayload = {inventoryId: 0, fishId: 0}) =>
 			'Content-Type': 'application/json'
 		}
 	})
-		.then(response => response.json());
+		.then(response => response.json())
+		.then(myJson => myJson);
 }
 
 export const releaseAssignedFish = (catchPayload = {lakeId: 0, fishId: 0}) => {
@@ -46,5 +47,6 @@ export const releaseAssignedFish = (catchPayload = {lakeId: 0, fishId: 0}) => {
 			'Content-Type': 'application/json'
 		}
 	})
-		.then(response => response.json());
+		.then(response => response.json())
+		.then(myJson => myJson);
 }
