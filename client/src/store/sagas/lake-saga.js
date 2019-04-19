@@ -54,7 +54,6 @@ function* catchFish(action) {
 			txt = "You released the fish!";
 			yield put ({type: actions.RELEASE_FISH_SUCCESS, payload: {fish: caughtFish, msg: txt}})
 		}
-		console.log("SAGA REACHED");
 	} catch (e) {
 		yield put({type: actions.CATCH_FISH_FAILURE, payload: e.message});
 	}

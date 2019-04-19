@@ -26,9 +26,11 @@ function LakesReducer(state = initialState, action) {
 			console.log("Failed to create new lake: ", action.payload);
 			return state;
 		case actions.CATCH_FISH_SUCCESS:
-			// window.alert(action.payload.msg);
-			console.log(action.payload.msg);
-			console.log("REDUCER FISH: ", JSON.stringify(action.payload.fish,null,4));
+			window.alert(action.payload.msg);
+			let fish = action.payload.fish;
+			fish.category = "fish";
+			fish.type = "fish";
+			fish.bgcolor = "blue";
 			return {
 				...state,
 				caughtFish: [...state.caughtFish, action.payload.fish]

@@ -37,7 +37,6 @@ export const catchAssignedFish = (catchPayload = {inventoryId: 0, fishId: 0}) =>
 	})
 		.then(response => response.json())
 		.then(function(myJson) {
-			console.log("API FISH: ", JSON.stringify(myJson,null,4));
 			return myJson;
 		});
 }
@@ -52,7 +51,6 @@ export const releaseAssignedFish = (catchPayload = {lakeId: 0, fishId: 0}) => {
 	})
 		.then(response => response.json())
 		.then(function(myJson) {
-			console.log("API FISH: ", JSON.stringify(myJson,null,4));
 			return myJson;
 		});
 }
