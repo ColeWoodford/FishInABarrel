@@ -42,17 +42,19 @@ function* catchFish(action) {
 				inventoryId: inventory.id,
 				fishId: action.payload.fish
 			}
-			this.caughtFish = yield call(catchAssignedFish, catchPayload);
+			caughtFish = yield call(catchAssignedFish, catchPayload);
 			txt = "You caught the fish!";
+			yield put ({type: actions.CATCH_FISH_SUCCESS, payload: {fish: caughtFish, msg: txt}})
 		} else {
 			const releasePayload = {
 				lakeId: lake,
 				fishId: action.payload.fish
 			}
-			this.caughtFish = yield call(releaseAssignedFish, releasePayload);
+			caughtFish = yield call(releaseAssignedFish, releasePayload);
 			txt = "You released the fish!";
+			yield put ({type: actions.RELEASE_FISH_SUCCESS, payload: {fish: caughtFish, msg: txt}})
 		}
-		yield put ({type: actions.CATCH_FISH_SUCCESS, payload: {fish: caughtFish, msg: txt}})
+		console.log("SAGA REACHED");
 	} catch (e) {
 		yield put({type: actions.CATCH_FISH_FAILURE, payload: e.message});
 	}
