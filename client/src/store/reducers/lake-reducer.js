@@ -28,7 +28,7 @@ function LakesReducer(state = initialState, action) {
 		case actions.CATCH_FISH_SUCCESS:
 			window.alert(action.payload.msg);
 			let fish = action.payload.fish;
-			fish.category = "fish";
+			fish.category = "inBag";
 			fish.type = "fish";
 			fish.bgcolor = "blue";
 			return {
