@@ -7,9 +7,12 @@ function* getInv(action) {
 	try {
 		const inventory = yield call(getInventory, action.payload);
 		const items = yield call(getInventoryItems, inventory.id);
-		const fish = yield call(getFishItems, inventory.id);
-		const allItems = items.concat(fish);
+		let fish = yield call(getFishItems, inventory.id);
+		if (fish == null) {
+			fish = [];
+		}
 		if (items !== null) {
+			const allItems = items.concat(fish);
 			yield put({type: actions.GET_INVENTORY_SUCCESS, payload: {inventory, allItems}});
 		}
 	} catch (e) {
