@@ -27,6 +27,7 @@ function LakesReducer(state = initialState, action) {
 			return state;
 		case actions.CATCH_FISH_SUCCESS:
 			window.alert(action.payload.msg);
+			console.log("REDUCER FISH: ", JSON.stringify(action.payload.fish,null,4));
 			return {
 				...state,
 				caughtFish: [...state.caughtFish, action.payload.fish]
