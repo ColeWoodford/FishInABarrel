@@ -4,6 +4,7 @@ import { strictEqual } from 'assert';
 const initialState = {
 		lakes: [],
 		currentLake: "",
+		caughtFish: []
 	}
 
 function LakesReducer(state = initialState, action) {
@@ -26,7 +27,10 @@ function LakesReducer(state = initialState, action) {
 			return state;
 		case actions.CATCH_FISH_SUCCESS:
 			window.alert(action.payload.msg);
-			return state;
+			return {
+				...state,
+				caughtFish: [...state.caughtFish, action.payload.fish]
+			};
 		default:		
 			return state
 	}

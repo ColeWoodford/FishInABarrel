@@ -99,7 +99,8 @@ function mapStateToProps(state) {
   return {
       username: state.LoginReducer.username,
       userId: state.LoginReducer.userId,
-      lakes: state.LakesReducer.lakes
+      lakes: state.LakesReducer.lakes,
+      caughtFish: state.LakesReducer.caughtFish,
   };
 }
 
