@@ -16,6 +16,15 @@ module.exports = (app, db) => {
 			.then(fish => res.json(fish))
 	})
 
+	// get a fish
+	app.get('/api/fish/:fishId', (req, res) => {
+		db.fish.findAll({
+			where: {
+				id: req.params.fishId
+			}
+		}).then(fish => res.json(fish))
+	})
+
 	//null lakeId for fish
 	app.patch('/api/fishes/removelake/:fishId', (req, res) => {
 		db.fish.findOne({

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { RodContainer, Item, BaitContainer, BagContainer, InventoryContainer } from './inventory-sc';
+import Shop from '../shop/shop';
+import { sellItem } from '../../../../store/actions/inventory-actions';
 
 class InvSpace extends Component {
   constructor(props) {
@@ -22,9 +24,10 @@ class InvSpace extends Component {
     e.preventDefault();
   }
 
-  onDragStart = (e, id) => {
+  onDragStart = (e, id, name) => {
     console.log('dragstart', id);
     e.dataTransfer.setData("id", id);
+    e.dataTransfer.setData("name", name);
   }
 
   onDropBag = (e, cat, bag, size) => {
@@ -87,6 +90,19 @@ class InvSpace extends Component {
     })
   }
 
+  onDropShop = (e) => {
+    const {sellItem} = this.props;
+    let id = e.dataTransfer.getData("id");
+    let name = e.dataTransfer.getData("name");
+    console.log("id:",id);
+    if(window.confirm("Are you sure you want to sell " + name + "?")) {
+      console.log("Item sold call action");
+      sellItem(id);
+    } else {
+      console.log("nothing happens.");
+    }
+  }
+
 	render() {
     const { size } = this.props;
     let items = {
@@ -98,7 +114,7 @@ class InvSpace extends Component {
       items[t.category].push(
       <Item
         key={t.id}
-        onDragStart={(e)=>this.onDragStart(e, t.id)}
+        onDragStart={(e)=>this.onDragStart(e, t.id, t.name)}
         draggable
         className="draggable"
         style={{backgroundColor: t.bgcolor}}>
@@ -110,6 +126,7 @@ class InvSpace extends Component {
     let baitFull = items.equipedBait.length;
     return (
       <div>
+        <Shop title="Shop" onDropShop={(e)=>this.onDropShop(e)} />
         {bagFull}/{size}
         <InventoryContainer>
           <RodContainer

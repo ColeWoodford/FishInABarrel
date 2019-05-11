@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getInventory } from '../api/inventory-api';
-import { getInventoryItems, getFishItems } from '../api/inventoryItem-api';
+import { getInventoryItems, getFishItems, getItemById } from '../api/inventoryItem-api';
 import { actions } from '../actions/inventory-actions';
 import { actions as lakeActions } from '../actions/lake-actions';
 
@@ -20,8 +20,18 @@ function* getInv(action) {
 	}
 }
 
+function* sellInvItem(action) {
+	try {
+		const itemToSell = yield call(getItemById, action.payload);
+		console.log(JSON.stringify(itemToSell,null,4));
+	} catch (e) {
+		yield put({type: actions.SELL_ITEM_FAILURE, payload: e.message});
+	}
+}
+
 function* inventorySaga() {
 	yield takeLatest(actions.GET_INVENTORY, getInv);
+	yield takeLatest(actions.SELL_ITEM, sellInvItem);
 }
 
 export default inventorySaga;

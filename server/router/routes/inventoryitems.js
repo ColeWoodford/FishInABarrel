@@ -8,6 +8,14 @@ module.exports = (app, db) => {
 	app.get('/api/inventoryitems', (req, res) => {
 		db.inventory.findAll().then(inventories => res.json(inventories))
 	})
+	// get an inventory item
+	app.get('/api/inventoryitem/:itemId', (req, res) => {
+		db.inventoryitem.findAll({
+			where: {
+				id: req.params.itemId
+			}
+		}).then(item => res.json(item))
+	})
 	//get an inventory's items
 	app.get('/api/inventoryitems/:invId', (req, res) => {
 		db.inventoryitem.findAll({

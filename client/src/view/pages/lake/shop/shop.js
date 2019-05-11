@@ -34,7 +34,7 @@ class Shop extends Component {
 						{this.props.title}
 					</ShopTitle>
 					<ShopContent style={{display:this.state.showContent ? "block" : "none"}}>
-						<ShopTiles />
+						<ShopTiles onDropShop={this.props.onDropShop}/>
 					</ShopContent>
 				</ShopWrapper>
 			</div>

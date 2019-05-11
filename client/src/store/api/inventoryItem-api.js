@@ -1,3 +1,36 @@
+export const getItemById = (itemId) => {
+	let item = fetch(`/api/inventoryItem/${itemId}`, {
+		method: 'GET',
+		headers: {
+			"Accept": "application/json",
+		}
+	})
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(myJson) {
+		return myJson;
+	});
+	if(item.length) {
+		return item;
+	}
+
+	item = fetch(`/api/fish/${itemId}`, {
+		method: 'GET',
+		headers: {
+			"Accept": "application/json",
+		}
+	})
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(myJson) {
+		return myJson;
+	});
+
+	return item;
+}
+
 export const getInventoryItems = (invId) => {
 	const inventoryItems = fetch(`/api/inventoryitems/${invId}`, {
 		method: 'GET',

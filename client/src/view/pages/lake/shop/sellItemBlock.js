@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import {SellItem} from './shop-sc';
 
 class SellItemBlock extends Component {
-  onDragOver = (e) => {
-    e.preventDefault();
+  constructor(props) {
+		super(props);
   }
 
-  onDropSell = (e) => {
-    let id = e.dataTransfer.getData("id");
-    alert("are you sure you want to sell ", id, "?");
+  onDragOver = (e) => {
+    e.preventDefault();
   }
 
 	render() {
     return (
       <SellItem
       onDragOver={(e)=>this.onDragOver(e)}
-      onDrop={(e)=>this.onDropSell(e)}
+      onDrop={this.props.onDropShop}
       >
         Drag Item Here to Sell
       </SellItem>

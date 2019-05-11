@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getInventory } from '../../../../store/actions/inventory-actions';
+import { getInventory, sellItem } from '../../../../store/actions/inventory-actions';
 import InvSpace from './invSpace';
 
 class Inventory extends Component {
@@ -17,7 +17,7 @@ class Inventory extends Component {
 			<div>
         <p>Money: {money}</p>
         Inventory<br></br>
-        <InvSpace size={size} items={allItems}/>
+        <InvSpace size={size} items={allItems} sellItem={this.props.sellItem}/>
 			</div>
 		)
 	}
@@ -34,7 +34,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ getInventory: getInventory }, dispatch);
+	return bindActionCreators({ 
+    getInventory: getInventory,
+    sellItem: sellItem,
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
