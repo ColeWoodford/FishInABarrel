@@ -12,7 +12,9 @@ class Inventory extends Component {
 
 	render() {
     const { size, money, items, fish } = this.props;
+    console.log("Adding: ",items," and ", fish);
     let allItems = items.concat(fish);
+    console.log("result: ", allItems);
     return (
 			<div>
         <p>Money: {money}</p>
@@ -21,8 +23,6 @@ class Inventory extends Component {
         size={size}
         items={allItems}
         sellItem={this.props.sellItem}
-        getInventory={this.props.getInventory}
-        userId={this.props.userId}
         />
 			</div>
 		)

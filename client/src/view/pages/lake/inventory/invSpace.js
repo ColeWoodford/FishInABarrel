@@ -25,7 +25,7 @@ class InvSpace extends Component {
   }
 
   onDragStart = (e, id, name) => {
-    console.log('dragstart', id);
+    // console.log('dragstart', id);
     e.dataTransfer.setData("id", id);
     e.dataTransfer.setData("name", name);
   }
@@ -91,15 +91,14 @@ class InvSpace extends Component {
   }
 
   onDropShop = (e) => {
-    const {sellItem, getInventory, userId} = this.props;
+    const {sellItem} = this.props;
     let id = e.dataTransfer.getData("id");
     let name = e.dataTransfer.getData("name");
-    console.log("id:",id);
+    // console.log("id:",id);
     if(window.confirm("Are you sure you want to sell " + name + "?")) {
       sellItem(id);
-      // getInventory(userId);
     } else {
-      console.log("nothing happens.");
+      // console.log("nothing happens.");
     }
   }
 
