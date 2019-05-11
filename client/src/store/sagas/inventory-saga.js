@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getInventory, getInventoryById, addMoney } from '../api/inventory-api';
-import { getInventoryItems, getFishItems, getItemById, destroyInventoryItem } from '../api/inventoryItem-api';
+import { getInventoryItems, getFishItems, getItemById, getFishById, destroyInventoryItem } from '../api/inventoryItem-api';
 import { actions } from '../actions/inventory-actions';
 import { actions as lakeActions } from '../actions/lake-actions';
 
@@ -22,14 +22,19 @@ function* getInv(action) {
 
 function* sellInvItem(action) {
 	try {
-		const itemToSell = yield call(getItemById, action.payload);
-		console.log("Item: ", JSON.stringify(itemToSell,null,4));
+		let itemToSell = yield call(getItemById, action.payload);
+		console.log("first Item: ", JSON.stringify(itemToSell,null,4));
+		//item is not an inventory item so it must be a fish
+		if (!itemToSell.length) {
+			itemToSell = yield call(getFishById, action.payload);
+		}
+		console.log("second Item: ", JSON.stringify(itemToSell,null,4));
 		const inventoryId = itemToSell[0].inventoryId;
 		const valueGained = itemToSell[0].value;
 		console.log("values: ", inventoryId,":", valueGained);
 		const inventory = yield call(getInventoryById, inventoryId);
 		console.log("inventory: ", JSON.stringify(inventory,null,4));
-		const newMoneyValue = inventory[0].money + valueGained;
+		const newMoneyValue = inventory.money + valueGained;
 		const newInventory = yield call(addMoney, {invId: inventoryId, value: newMoneyValue});
 		console.log("New inv: ", JSON.stringify(newInventory,null,4));
 		const destroyedItem = yield call(destroyInventoryItem, action.payload);

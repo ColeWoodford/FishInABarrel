@@ -1,5 +1,5 @@
 export const getItemById = (itemId) => {
-	let item = fetch(`/api/inventoryitem/${itemId}`, {
+	const item = fetch(`/api/inventoryitem/${itemId}`, {
 		method: 'GET',
 		headers: {
 			"Accept": "application/json",
@@ -11,12 +11,11 @@ export const getItemById = (itemId) => {
 	.then(function(myJson) {
 		return myJson;
 	});
-	console.log("Item was found!", JSON.stringify(item,null,4));
-	if(item.length) {
-		return item;
-	}
+	return item;
+}
 
-	item = fetch(`/api/fish/${itemId}`, {
+export const getFishById = (itemId) => {
+	const item = fetch(`/api/fish/${itemId}`, {
 		method: 'GET',
 		headers: {
 			"Accept": "application/json",
