@@ -31,6 +31,20 @@ export const getFishById = (itemId) => {
 	return item;
 }
 
+export const sellFish = (fishId) => {
+	return fetch(`/api/fishes/removeinv/${fishId}`, {
+		method: "PATCH",
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(response => response.json())
+		.then(function(myJson) {
+			return myJson;
+		});
+}
+
 export const getInventoryItems = (invId) => {
 	const inventoryItems = fetch(`/api/inventoryitems/${invId}`, {
 		method: 'GET',

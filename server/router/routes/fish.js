@@ -42,6 +42,23 @@ module.exports = (app, db) => {
 		})
 	})
 
+	//null inventoryId for fish
+	app.patch('/api/fishes/removeinv/:fishId', (req, res) => {
+		db.fish.findOne({
+			where: {
+				id: req.params.fishId
+			}
+		})
+		.then(fish => {
+			return fish.updateAttributes({
+				inventoryId: null
+			})
+		})
+		.then(updatedFish => {
+			res.json(updatedFish);
+		})
+	})
+
 	// get all fish
 	app.get('/api/fishes', (req, res) => {
 		db.fish.findAll().then(fishes => res.json(fishes))
