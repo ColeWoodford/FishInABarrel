@@ -8,6 +8,7 @@ class Inventory extends Component {
   componentDidMount() {
     const { userId } = this.props;
     this.props.getInventory(userId);
+    this.props.getInventory(userId);
   }
 
 	render() {
