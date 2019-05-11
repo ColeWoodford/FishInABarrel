@@ -41,6 +41,7 @@ function* sellInvItem(action) {
 		} else {
 			destroyedItem = yield call(destroyInventoryItem, action.payload);
 		}
+		console.log("des item: ",JSON.stringify(destroyedItem,null,4));
 		yield put({type: actions.SELL_ITEM_SUCCESS, payload: {money: newMoneyValue, item: destroyedItem}});
 		if (isFish) {
 			yield put({type: lakeActions.SELL_FISH_SUCCESS, payload: destroyedItem});
