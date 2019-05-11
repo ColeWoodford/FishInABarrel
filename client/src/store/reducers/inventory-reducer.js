@@ -33,6 +33,7 @@ function InventoryReducer(state = initialState, action) {
 			return {
 				...state,
 				money: action.payload.money,
+				items: state.items.filter(item => item.id != action.payload.item.id)
 			};
 		case actions.SELL_ITEM_FAILURE:
 			console.log("Failed to sell item: ",action.payload);

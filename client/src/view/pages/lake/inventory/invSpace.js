@@ -98,7 +98,7 @@ class InvSpace extends Component {
     if(window.confirm("Are you sure you want to sell " + name + "?")) {
       console.log("Item sold call action");
       sellItem(id);
-      getInventory(userId);
+      // getInventory(userId);
     } else {
       console.log("nothing happens.");
     }
