@@ -7,6 +7,7 @@ import { actions as lakeActions } from '../actions/lake-actions';
 function* getInv(action) {
 	try {
 		const inventory = yield call(getInventory, action.payload);
+		console.log("getinventory called and result is: ",JSON.stringify(inventory,null,4));
 		const items = yield call(getInventoryItems, inventory.id);
 		let fish = yield call(getFishItems, inventory.id);
 		if (items !== null) {

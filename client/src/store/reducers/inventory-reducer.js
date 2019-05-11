@@ -9,6 +9,7 @@ const initialState = {
 function InventoryReducer(state = initialState, action) {
 	switch (action.type) {
 		case actions.GET_INVENTORY_SUCCESS:
+			console.log("in reducer items are: ",action.payload.items);
 			return {
 				...state,
 				size: action.payload.inventory.size,
