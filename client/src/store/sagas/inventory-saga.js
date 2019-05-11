@@ -27,7 +27,10 @@ function* sellInvItem(action) {
 		const inventoryId = itemToSell[0].inventoryId;
 		const valueGained = itemToSell[0].value;
 		console.log("values: ", inventoryId,":", valueGained);
-		const newInventory = yield call(addMoney, {invId: inventoryId, value: valueGained});
+		const inventory = yield call(getInventory, inventoryId);
+		console.log("inventory: ", JSON.stringify(inventory,null,4));
+		const newMoneyValue = inventory[0].money + valueGained;
+		const newInventory = yield call(addMoney, {invId: inventoryId, value: newMoneyValue});
 		console.log("New inv: ", JSON.stringify(newInventory,null,4));
 		const destroyedItem = yield call(destroyInventoryItem, action.payload);
 		console.log("Des Item: ", JSON.stringify(destroyedItem,null,4));

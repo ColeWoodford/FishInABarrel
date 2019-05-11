@@ -1,5 +1,5 @@
 export const getItemById = (itemId) => {
-	let item = fetch(`/api/inventoryItem/${itemId}`, {
+	let item = fetch(`/api/inventoryitem/${itemId}`, {
 		method: 'GET',
 		headers: {
 			"Accept": "application/json",

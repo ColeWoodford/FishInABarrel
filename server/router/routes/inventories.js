@@ -17,7 +17,7 @@ module.exports = (app, db) => {
 		})
 		.then(inv => {
 			return inv.updateAttributes({
-				money: money+req.params.value
+				money: req.params.value
 			})
 		})
 		.then(updatedFish => {
