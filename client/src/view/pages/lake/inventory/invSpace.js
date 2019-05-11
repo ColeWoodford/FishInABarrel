@@ -91,13 +91,14 @@ class InvSpace extends Component {
   }
 
   onDropShop = (e) => {
-    const {sellItem} = this.props;
+    const {sellItem, getInventory, userId} = this.props;
     let id = e.dataTransfer.getData("id");
     let name = e.dataTransfer.getData("name");
     console.log("id:",id);
     if(window.confirm("Are you sure you want to sell " + name + "?")) {
       console.log("Item sold call action");
       sellItem(id);
+      getInventory(userId);
     } else {
       console.log("nothing happens.");
     }

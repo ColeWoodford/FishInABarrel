@@ -17,7 +17,13 @@ class Inventory extends Component {
 			<div>
         <p>Money: {money}</p>
         Inventory<br></br>
-        <InvSpace size={size} items={allItems} sellItem={this.props.sellItem}/>
+        <InvSpace
+        size={size}
+        items={allItems}
+        sellItem={this.props.sellItem}
+        getInventory={this.props.getInventory}
+        userId={this.props.userId}
+        />
 			</div>
 		)
 	}
