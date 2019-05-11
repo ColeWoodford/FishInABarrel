@@ -8,6 +8,22 @@ module.exports = (app, db) => {
 	app.get('/api/inventories', (req, res) => {
 		db.inventory.findAll().then(inventories => res.json(inventories))
 	})
+	//add money to an inventory
+	app.patch('/api/inventory/:invId/addmoney/:value', (req, res) => {
+		db.inventory.findOne({
+			where: {
+				id: req.params.invId
+			}
+		})
+		.then(inv => {
+			return inv.updateAttributes({
+				money: money+req.params.value
+			})
+		})
+		.then(updatedFish => {
+			res.json(updatedFish);
+		})
+	})
 	//get a user's inventory
 	app.get('/api/inventories/:userId', (req, res) => {
 		db.inventory.find({

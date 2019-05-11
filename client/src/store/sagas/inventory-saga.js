@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { getInventory } from '../api/inventory-api';
-import { getInventoryItems, getFishItems, getItemById } from '../api/inventoryItem-api';
+import { getInventory, addMoney } from '../api/inventory-api';
+import { getInventoryItems, getFishItems, getItemById, destroyInventoryItem } from '../api/inventoryItem-api';
 import { actions } from '../actions/inventory-actions';
 import { actions as lakeActions } from '../actions/lake-actions';
 
@@ -23,7 +23,11 @@ function* getInv(action) {
 function* sellInvItem(action) {
 	try {
 		const itemToSell = yield call(getItemById, action.payload);
-		console.log(JSON.stringify(itemToSell,null,4));
+		const inventoryId = itemToSell.inventoryId;
+		const valueGained = itemToSell.value;
+		const newInventory = yield call(addMoney, {invId: inventoryId, value: valueGained});
+		const destroyedItem = yield call(destroyInventoryItem, action.payload);
+		yield put({type: actions.SELL_ITEM_SUCCESS, payload: destroyedItem})
 	} catch (e) {
 		yield put({type: actions.SELL_ITEM_FAILURE, payload: e.message});
 	}

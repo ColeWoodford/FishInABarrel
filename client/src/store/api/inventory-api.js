@@ -31,6 +31,20 @@ export const createInventory = (user = {}) => {
 	.then(response => response.json());
 }
 
+export const addMoney = (payload={invId: 0, value: 0}) => {
+	return fetch(`/api/inventory/${payload.invId}/addmoney/${payload.value}`, {
+		method: "PATCH",
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(response => response.json())
+		.then(function(myJson) {
+			return myJson;
+		});
+}
+
 export const destroyInventory = (userId) => {
 	const destroyedInventory = fetch(`/api/inventories/${userId}`, {
 		method: 'DELETE',
