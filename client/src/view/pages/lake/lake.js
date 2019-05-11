@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { LakeContainer, Row, Col } from './lakeTile-sc';
 import { getLakes, catchFish } from '../../../store/actions/lake-actions';
+import Shop from './shop/shop';
 import Chat from '../../chat';
 import Tile from './lakeTile';
 import Inventory from './inventory/inventory';
@@ -35,7 +36,7 @@ class Lake extends Component {
   render() {
     const { username } = this.props;
     let lake;
-    if(username !== null) {
+    // if(username !== null) {
       lake =
       <div>
         <div>
@@ -76,15 +77,16 @@ class Lake extends Component {
             </Col>
           </Row>
         </LakeContainer>
+        <Shop title="Shop" />
         <Inventory />
         <Chat socket={this.props.socket} />
       </div>
-    } else {
-      lake =
-      <div>
-        Please login
-      </div>
-    }
+    // } else {
+    //   lake =
+    //   <div>
+    //     Please login
+    //   </div>
+    // }
 
     return(
       <div>

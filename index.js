@@ -19,6 +19,10 @@ const router = require('./server/router/index');
  */
 router(app, db);
 
+/**
+ * In the production build, routes hitting the base url should load the build-index file
+ * built from the npm build command. In development, we do not need this re-direct.
+ */
 if (process.env.NODE_ENV == 'production') {
 	app.use(express.static(path.resolve(__dirname, './client/build')));
 
@@ -32,6 +36,7 @@ if (process.env.NODE_ENV == 'production') {
 	});
 }
 
+/** --------------------------- Socket.io ------------------------------ */
 var fishersList = [];
 var usedFishList = [];
 
@@ -99,7 +104,7 @@ io.on('connection', function(socket){
     console.log('user disconnected');
   });
 });
-
+/** ---------------------------------- End Socket.io ------------------------------- */
 const PORT = process.env.PORT || 8000;
 app.set('port', PORT);
 
