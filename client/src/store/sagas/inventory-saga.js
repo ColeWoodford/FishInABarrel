@@ -23,10 +23,14 @@ function* getInv(action) {
 function* sellInvItem(action) {
 	try {
 		const itemToSell = yield call(getItemById, action.payload);
+		console.log("Item: ", JSON.stringify(itemToSell,null,4));
 		const inventoryId = itemToSell.inventoryId;
 		const valueGained = itemToSell.value;
+		console.log("values: ", inventoryId,":", valueGained);
 		const newInventory = yield call(addMoney, {invId: inventoryId, value: valueGained});
+		console.log("New inv: ", JSON.stringify(newInventory,null,4));
 		const destroyedItem = yield call(destroyInventoryItem, action.payload);
+		console.log("Des Item: ", JSON.stringify(destroyedItem,null,4));
 		yield put({type: actions.SELL_ITEM_SUCCESS, payload: destroyedItem})
 	} catch (e) {
 		yield put({type: actions.SELL_ITEM_FAILURE, payload: e.message});
