@@ -6,9 +6,10 @@ import InvSpace from './invSpace';
 
 class Inventory extends Component {
   componentDidMount() {
-    const { userId } = this.props;
-    this.props.getInventory(userId);
-    this.props.getInventory(userId);
+    const { userId, isNewUser } = this.props;
+    if(!isNewUser) {
+      this.props.getInventory(userId);
+    }
   }
 
 	render() {
@@ -34,7 +35,8 @@ function mapStateToProps(state) {
       size: state.InventoryReducer.size,
       money: state.InventoryReducer.money,
       items: state.InventoryReducer.items,
-      fish: state.LakesReducer.caughtFish
+      fish: state.LakesReducer.caughtFish,
+      isNewUser: state.LoginReducer.isNewUser
   };
 }
 
