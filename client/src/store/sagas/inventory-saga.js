@@ -41,10 +41,10 @@ function* sellInvItem(action) {
 		} else {
 			destroyedItem = yield call(destroyInventoryItem, action.payload);
 		}
-		console.log("des item: ",JSON.stringify(destroyedItem,null,4));
-		yield put({type: actions.SELL_ITEM_SUCCESS, payload: {money: newMoneyValue, item: destroyedItem}});
+		console.log("des item: ",JSON.stringify(itemToSell[0],null,4));
+		yield put({type: actions.SELL_ITEM_SUCCESS, payload: {money: newMoneyValue, item: itemToSell[0]}});
 		if (isFish) {
-			yield put({type: lakeActions.SELL_FISH_SUCCESS, payload: destroyedItem});
+			yield put({type: lakeActions.SELL_FISH_SUCCESS, payload: itemToSell[0]});
 		}
 	} catch (e) {
 		yield put({type: actions.SELL_ITEM_FAILURE, payload: e.message});
