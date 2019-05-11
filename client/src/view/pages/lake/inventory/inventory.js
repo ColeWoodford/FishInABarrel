@@ -5,7 +5,7 @@ import { getInventory, sellItem } from '../../../../store/actions/inventory-acti
 import InvSpace from './invSpace';
 
 class Inventory extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { userId } = this.props;
     this.props.getInventory(userId);
   }
