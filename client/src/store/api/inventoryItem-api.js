@@ -11,6 +11,7 @@ export const getItemById = (itemId) => {
 	.then(function(myJson) {
 		return myJson;
 	});
+	console.log("Item was found!", JSON.stringify(item,null,4));
 	if(item.length) {
 		return item;
 	}
