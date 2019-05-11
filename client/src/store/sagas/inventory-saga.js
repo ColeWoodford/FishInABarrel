@@ -9,6 +9,7 @@ function* getInv(action) {
 		const inventory = yield call(getInventory, action.payload);
 		console.log("getinventory called and result is: ",JSON.stringify(inventory,null,4));
 		const items = yield call(getInventoryItems, inventory.id);
+		console.log("items in saga are: ",JSON.stringify(items,null,4));
 		let fish = yield call(getFishItems, inventory.id);
 		if (items !== null) {
 			yield put({type: actions.GET_INVENTORY_SUCCESS, payload: {inventory, items}});
