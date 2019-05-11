@@ -30,7 +30,7 @@ function* sellInvItem(action) {
 			itemToSell = yield call(getFishById, action.payload);
 		}
 		const inventoryId = itemToSell[0].inventoryId;
-		const valueGained = itemToSell[0].value;
+		const valueGained = parseInt(itemToSell[0].value);
 		const inventory = yield call(getInventoryById, inventoryId);
 		const newMoneyValue = inventory.money + valueGained;
 		const newInventory = yield call(addMoney, {invId: inventoryId, value: newMoneyValue});
