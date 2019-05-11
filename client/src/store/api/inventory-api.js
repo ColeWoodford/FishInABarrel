@@ -15,6 +15,23 @@ export const getInventory = (userId) => {
 	return inventory;
 }
 
+export const getInventoryById = (invId) => {
+	const inventory = fetch(`/api/inventory/${invId}`, {
+		method: 'GET',
+		headers: {
+			"Accept": "application/json",
+		}
+	})
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(myJson) {
+		return myJson;
+	});
+
+	return inventory;
+}
+
 export const createInventory = (user = {}) => {
 	return fetch(`/api/inventories/${user.id}`, {
 		method: 'POST',

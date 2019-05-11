@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { getInventory, addMoney } from '../api/inventory-api';
+import { getInventory, getInventoryById, addMoney } from '../api/inventory-api';
 import { getInventoryItems, getFishItems, getItemById, destroyInventoryItem } from '../api/inventoryItem-api';
 import { actions } from '../actions/inventory-actions';
 import { actions as lakeActions } from '../actions/lake-actions';
@@ -27,7 +27,7 @@ function* sellInvItem(action) {
 		const inventoryId = itemToSell[0].inventoryId;
 		const valueGained = itemToSell[0].value;
 		console.log("values: ", inventoryId,":", valueGained);
-		const inventory = yield call(getInventory, inventoryId);
+		const inventory = yield call(getInventoryById, inventoryId);
 		console.log("inventory: ", JSON.stringify(inventory,null,4));
 		const newMoneyValue = inventory[0].money + valueGained;
 		const newInventory = yield call(addMoney, {invId: inventoryId, value: newMoneyValue});

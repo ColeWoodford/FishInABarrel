@@ -24,6 +24,15 @@ module.exports = (app, db) => {
 			res.json(updatedFish);
 		})
 	})
+	//get a inventory
+	app.get('/api/inventory/:invId', (req, res) => {
+		db.inventory.find({
+			where: {
+				id: req.params.invId
+			}
+		})
+		.then(inventory => res.json(inventory));
+	})
 	//get a user's inventory
 	app.get('/api/inventories/:userId', (req, res) => {
 		db.inventory.find({
