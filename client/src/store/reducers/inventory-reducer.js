@@ -26,10 +26,9 @@ function InventoryReducer(state = initialState, action) {
 				items: [...state.items, action.payload.rod, action.payload.bait]
 			};
 		case actions.CREATE_INVENTORY_FAILURE:
-			console.log("Failed ", action.payload);
+			console.log("Failed to create inventory: ", action.payload);
 			return state;
 		case actions.SELL_ITEM_SUCCESS:
-			console.log("Sold item: ", JSON.stringify(action.payload.item,null,4));
 			return {
 				...state,
 				money: action.payload.money,

@@ -24,21 +24,16 @@ function* sellInvItem(action) {
 	try {
 		let isFish = 0;
 		let itemToSell = yield call(getItemById, action.payload);
-		console.log("first Item: ", JSON.stringify(itemToSell,null,4));
 		//item is not an inventory item so it must be a fish
 		if (!itemToSell.length) {
 			isFish = 1;
 			itemToSell = yield call(getFishById, action.payload);
 		}
-		console.log("second Item: ", JSON.stringify(itemToSell,null,4));
 		const inventoryId = itemToSell[0].inventoryId;
 		const valueGained = itemToSell[0].value;
-		console.log("values: ", inventoryId,":", valueGained);
 		const inventory = yield call(getInventoryById, inventoryId);
-		console.log("inventory: ", JSON.stringify(inventory,null,4));
 		const newMoneyValue = inventory.money + valueGained;
 		const newInventory = yield call(addMoney, {invId: inventoryId, value: newMoneyValue});
-		console.log("New inv: ", JSON.stringify(newInventory,null,4));
 		let destroyedItem;
 		if (isFish) {
 			//destroy fish
@@ -46,9 +41,10 @@ function* sellInvItem(action) {
 		} else {
 			destroyedItem = yield call(destroyInventoryItem, action.payload);
 		}
-		
-		console.log("Des Item: ", JSON.stringify(destroyedItem,null,4));
-		yield put({type: actions.SELL_ITEM_SUCCESS, payload: {money: newMoneyValue, item: destroyedItem}})
+		yield put({type: actions.SELL_ITEM_SUCCESS, payload: {money: newMoneyValue, item: destroyedItem}});
+		if (isFish) {
+			yield put({type: lakeActions.SELL_FISH_SUCCESS, payload: destroyedItem});
+		}
 	} catch (e) {
 		yield put({type: actions.SELL_ITEM_FAILURE, payload: e.message});
 	}

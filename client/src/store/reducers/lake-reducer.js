@@ -36,6 +36,11 @@ function LakesReducer(state = initialState, action) {
 				...state,
 				caughtFish: action.payload
 			};
+			case actions.SELL_FISH_SUCCESS:
+			return {
+				...state,
+				caughtFish: state.caughtFish.filter(item => item.id != action.payload.item.id)
+				}
 		default:		
 			return state
 	}
