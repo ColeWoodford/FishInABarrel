@@ -96,7 +96,6 @@ class InvSpace extends Component {
     let name = e.dataTransfer.getData("name");
     console.log("id:",id);
     if(window.confirm("Are you sure you want to sell " + name + "?")) {
-      console.log("Item sold call action");
       sellItem(id);
       // getInventory(userId);
     } else {
