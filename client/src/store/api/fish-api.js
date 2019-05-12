@@ -15,6 +15,23 @@ export const getFish = (lake) => {
 	return fish;
 }
 
+export const getFishById = (fishId) => {
+	const fish = fetch(`/api/fish/${fishId}`, {
+		method: 'GET',
+		headers: {
+			"Accept": "application/json",
+		}
+	})
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(myJson) {
+		return myJson;
+	});
+
+	return fish;
+}
+
 export const createFish = (fish = {}) => {
 	return fetch(`/api/fishes/${fish.id}`, {
 		method: "POST",

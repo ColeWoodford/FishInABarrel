@@ -99,7 +99,8 @@ module.exports = (app, db) => {
 		})
 		.then(fish => {
 			return fish.updateAttributes({
-				lakeId: req.params.lakeId
+				lakeId: req.params.lakeId,
+				times_caught: db.Sequelize.literal('times_caught + 1')
 			})
 		})
 		.then(updatedFish => {

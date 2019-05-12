@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { actions } from '../actions/lake-actions';
 import { getLake, postLake, catchAssignedFish, releaseAssignedFish } from '../api/lake-api';
 import { createFish } from '../api/fish-api';
-import { trout } from '../assets/fish';
+import { trout, allFish } from '../assets/fish';
 import { getInventory } from '../api/inventory-api';
 
 function* getLakes(action) {
@@ -52,6 +52,13 @@ function* catchFish(action) {
 			}
 			caughtFish = yield call(releaseAssignedFish, releasePayload);
 			txt = "You released the fish!";
+			console.log("Released FISH: ",JSON.stringify(caughtFish,null,4));
+			const duplicateFish = allFish.filter(fish => fish.level = caughtFish.level);
+			const levelUpFish = allFish.filter(fish => fish.level = (caughtFish.level + 1));
+			yield call(createFish, duplicateFish[0]);
+			if (levelUpFish.length) {
+				yield call(createFish, levelUpFish[0]);
+			}
 			yield put ({type: actions.RELEASE_FISH_SUCCESS, payload: {fish: caughtFish, msg: txt}})
 		}
 	} catch (e) {
