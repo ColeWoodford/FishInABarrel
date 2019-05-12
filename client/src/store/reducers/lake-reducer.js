@@ -1,5 +1,4 @@
 import { actions } from '../actions/lake-actions';
-import { strictEqual } from 'assert';
 
 const initialState = {
 		lakes: [],
