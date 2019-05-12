@@ -78,7 +78,7 @@ function resolveFishers() {
 				});
 				const updatedFish = await putresponse.json();
 				console.log("updated:", updatedFish);
-				io.emit('fish assigned', updatedFish.id);
+				io.emit(`fish assigned ${fisher.name}`, updatedFish.id);
 			}
 			putrequest();
 		}

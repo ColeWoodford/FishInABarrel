@@ -54,19 +54,14 @@ function* sellInvItem(action) {
 function* buyInvItem(action) {
 	try {
 		const {itemName, userId} = action.payload;
-		console.log("going to buy", itemName, " for ", userId);
 		const inventory = yield call(getInventory, userId);
 		const inventoryId = inventory.id;
-		console.log("inv id: ", inventoryId);
 		const itemToBuy = itemsForSale.filter(item => item.name == itemName);
 		itemToBuy[0].id = inventoryId;
-		console.log("item to buy: ",JSON.stringify(itemToBuy[0],null,4));
 		const valueLost = parseInt(itemToBuy[0].value);
 		const newMoneyValue = inventory.money - valueLost;
 		const newInventory = yield call(addMoney, {invId: inventoryId, value: newMoneyValue});
-		console.log("new inv: ",JSON.stringify(newInventory,null,4));
 		const boughtItem = yield call(createInventoryItem, itemToBuy[0]);
-		console.log("bought item: ",JSON.stringify(boughtItem,null,4));
 		yield put({type: actions.BUY_ITEM_SUCCESS, payload: {money: newMoneyValue, item: boughtItem}});
 	} catch (e) {
 		yield put({type: actions.BUY_ITEM_FAILURE, payload: e.message});
