@@ -67,7 +67,7 @@ function* buyInvItem(action) {
 		console.log("new inv: ",JSON.stringify(newInventory,null,4));
 		const boughtItem = yield call(createInventoryItem, itemToBuy[0]);
 		console.log("bought item: ",JSON.stringify(boughtItem,null,4));
-		yield put({type: actions.BUY_ITEM_SUCCESS, payload: {money: newMoneyValue, item: itemToBuy[0]}});
+		yield put({type: actions.BUY_ITEM_SUCCESS, payload: {money: newMoneyValue, item: boughtItem}});
 	} catch (e) {
 		yield put({type: actions.BUY_ITEM_FAILURE, payload: e.message});
 	}
