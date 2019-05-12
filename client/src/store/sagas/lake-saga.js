@@ -53,10 +53,10 @@ function* catchFish(action) {
 			caughtFish = yield call(releaseAssignedFish, releasePayload);
 			txt = "You released the fish!";
 			console.log("Released FISH: ",JSON.stringify(caughtFish,null,4));
-			const duplicateFish = allFish.filter(fish => fish.level = caughtFish.level);
+			const duplicateFish = allFish.filter(fish => fish.level == caughtFish.level);
 			duplicateFish.id = lake;
 			console.log("Duplicate FISH: ",JSON.stringify(duplicateFish,null,4));
-			const levelUpFish = allFish.filter(fish => fish.level = (caughtFish.level + 1));
+			const levelUpFish = allFish.filter(fish => fish.level == (caughtFish.level + 1));
 			console.log("Levelup outside FISH: ",JSON.stringify(levelUpFish,null,4));
 			yield call(createFish, duplicateFish[0]);
 			if (levelUpFish.length) {
