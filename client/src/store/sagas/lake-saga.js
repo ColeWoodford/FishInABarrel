@@ -54,14 +54,14 @@ function* catchFish(action) {
 			txt = "You released the fish!";
 			console.log("Released FISH: ",JSON.stringify(caughtFish,null,4));
 			const duplicateFish = allFish.filter(fish => fish.level == caughtFish.level);
-			duplicateFish.id = lake;
+			duplicateFish[0].id = lake;
 			console.log("lake=",lake);
 			console.log("Duplicate FISH: ",JSON.stringify(duplicateFish,null,4));
 			const levelUpFish = allFish.filter(fish => fish.level == (parseInt(caughtFish.level) + 1));
 			console.log("Levelup outside FISH: ",JSON.stringify(levelUpFish,null,4));
 			yield call(createFish, duplicateFish[0]);
-			if (levelUpFish.length) {
-				levelUpFish.id = lake;
+			if (levelUpFish.length > 0) {
+				levelUpFish[0].id = lake;
 				console.log("Levelup inside FISH: ",JSON.stringify(levelUpFish,null,4));
 				yield call(createFish, levelUpFish[0]);
 			}
