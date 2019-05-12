@@ -40,7 +40,7 @@ function InventoryReducer(state = initialState, action) {
 			return {
 				...state,
 				money: action.payload.money,
-				items: state.items.filter(item => item.id != action.payload.item.id)
+				items: [...state.items, action.payload.item]
 			}
 		case actions.BUY_ITEM_FAILURE:
 			console.log("Failed to buy item: ",action.payload);
