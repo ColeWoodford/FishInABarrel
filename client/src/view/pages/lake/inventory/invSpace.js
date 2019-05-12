@@ -103,7 +103,7 @@ class InvSpace extends Component {
   }
 
 	render() {
-    const { size } = this.props;
+    const { size, buyItem, userId } = this.props;
     let items = {
       equipedRod: [],
       equipedBait: [],
@@ -125,7 +125,7 @@ class InvSpace extends Component {
     let baitFull = items.equipedBait.length;
     return (
       <div>
-        <Shop title="Shop" onDropShop={(e)=>this.onDropShop(e)} />
+        <Shop title="Shop" onDropShop={(e)=>this.onDropShop(e)} buyItem={buyItem} userId={userId} />
         {bagFull}/{size}
         <InventoryContainer>
           <RodContainer

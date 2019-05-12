@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getInventory, sellItem } from '../../../../store/actions/inventory-actions';
+import { getInventory, sellItem, buyItem } from '../../../../store/actions/inventory-actions';
 import InvSpace from './invSpace';
 
 class Inventory extends Component {
@@ -13,7 +13,7 @@ class Inventory extends Component {
   }
 
 	render() {
-    const { size, money, items, fish } = this.props;
+    const { size, money, items, fish, sellItem, buyItem, userId } = this.props;
     let allItems = items.concat(fish);
     return (
 			<div>
@@ -22,7 +22,9 @@ class Inventory extends Component {
         <InvSpace
         size={size}
         items={allItems}
-        sellItem={this.props.sellItem}
+        sellItem={sellItem}
+        buyItem={buyItem}
+        userId={userId}
         />
 			</div>
 		)
@@ -44,6 +46,7 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ 
     getInventory: getInventory,
     sellItem: sellItem,
+    buyItem: buyItem,
   }, dispatch);
 }
 

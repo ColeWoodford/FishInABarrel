@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 import ItemForSale from './itemForSale';
 import SellItemBlock from './sellItemBlock';
-import {bambooRod} from '../../../../store/assets/fishingRods';
-import {worms} from '../../../../store/assets/baits';
+import {itemsForSale} from '../../../../store/assets/itemsForSale';
 
 class ShopTiles extends Component {
 	constructor(props) {
 		super(props);
-	}
+  }
 
-	render() {
+	makeShop = () => {
+    const {buyItem, userId} = this.props;
     return (
       <div>
-				<ItemForSale item={bambooRod} />
-				<ItemForSale item={worms} />
-				<SellItemBlock onDropShop={this.props.onDropShop}/>
+        {itemsForSale.map(item => <ItemForSale key={item.name} item={item} buyItem={buyItem} userId={userId} />)}
+      </div>
+    )
+  }
+
+	render() {
+    const {onDropShop} = this.props;
+    return (
+      <div>
+				{this.makeShop()}
+				<SellItemBlock onDropShop={onDropShop}/>
       </div>
     );
   }

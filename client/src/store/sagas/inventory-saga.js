@@ -1,15 +1,14 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getInventory, getInventoryById, addMoney } from '../api/inventory-api';
-import { getInventoryItems, getFishItems, getItemById, getFishById, sellFish, destroyInventoryItem } from '../api/inventoryItem-api';
+import { getInventoryItems, getFishItems, getItemById, getFishById, sellFish, destroyInventoryItem, createInventoryItem } from '../api/inventoryItem-api';
+import { itemsForSale } from '../assets/itemsForSale';
 import { actions } from '../actions/inventory-actions';
 import { actions as lakeActions } from '../actions/lake-actions';
 
 function* getInv(action) {
 	try {
 		const inventory = yield call(getInventory, action.payload);
-		console.log("getinventory called and result is: ",JSON.stringify(inventory,null,4));
 		const items = yield call(getInventoryItems, inventory.id);
-		console.log("items in saga are: ",JSON.stringify(items,null,4));
 		let fish = yield call(getFishItems, inventory.id);
 		if (items !== null) {
 			yield put({type: actions.GET_INVENTORY_SUCCESS, payload: {inventory, items}});
@@ -43,7 +42,6 @@ function* sellInvItem(action) {
 		} else {
 			destroyedItem = yield call(destroyInventoryItem, action.payload);
 		}
-		console.log("des item: ",JSON.stringify(itemToSell[0],null,4));
 		yield put({type: actions.SELL_ITEM_SUCCESS, payload: {money: newMoneyValue, item: itemToSell[0]}});
 		if (isFish) {
 			yield put({type: lakeActions.SELL_FISH_SUCCESS, payload: itemToSell[0]});
@@ -53,9 +51,30 @@ function* sellInvItem(action) {
 	}
 }
 
+function* buyInvItem(action) {
+	try {
+		const {itemName, userId} = action.payload;
+		console.log("going to buy", itemName, " for ", userId);
+		const inventory = yield call(getInventory, userId);
+		const inventoryId = inventory.id;
+		console.log("inv id: ", inventoryId);
+		const itemToBuy = itemsForSale.filter(item => item.name == itemName);
+		itemToBuy[0].id = inventoryId;
+		console.log("item to buy: ",JSON.stringify(itemToBuy[0],null,4));
+		const valueLost = parseInt(itemToBuy[0].value);
+		const newMoneyValue = inventory.money - valueLost;
+		const newInventory = yield call(addMoney, {invId: inventoryId, value: newMoneyValue});
+		const boughtItem = yield call(createInventoryItem, itemToBuy[0]);
+		yield put({type: actions.BUY_ITEM_SUCCESS, payload: boughtItem});
+	} catch (e) {
+		yield put({type: actions.BUY_ITEM_FAILURE, payload: e.message});
+	}
+}
+
 function* inventorySaga() {
 	yield takeLatest(actions.GET_INVENTORY, getInv);
 	yield takeLatest(actions.SELL_ITEM, sellInvItem);
+	yield takeLatest(actions.BUY_ITEM, buyInvItem);
 }
 
 export default inventorySaga;

@@ -37,6 +37,8 @@ function* createNewUser(action) {
 			const inventory = yield call(createInventory, user);
 			const firstRod = bambooRod;
 			const firstBait = worms;
+			firstRod.category = "equipedRod";
+			firstBait.category = "equipedBait";
 			firstRod.id = inventory.id;
 			firstBait.id = inventory.id;
 			const fishingRod = yield call(createInventoryItem, firstRod);

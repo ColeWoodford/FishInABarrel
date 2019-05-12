@@ -9,7 +9,6 @@ const initialState = {
 function InventoryReducer(state = initialState, action) {
 	switch (action.type) {
 		case actions.GET_INVENTORY_SUCCESS:
-			console.log("in reducer payload is: ",JSON.stringify(action.payload,null,4));
 			return {
 				...state,
 				size: action.payload.inventory.size,
@@ -37,6 +36,14 @@ function InventoryReducer(state = initialState, action) {
 			};
 		case actions.SELL_ITEM_FAILURE:
 			console.log("Failed to sell item: ",action.payload);
+		case actions.BUY_ITEM_SUCCESS:
+			return {
+				...state,
+				money: action.payload.money,
+				items: state.items.filter(item => item.id != action.payload.item.id)
+			}
+		case actions.BUY_ITEM_FAILURE:
+			console.log("Failed to buy item: ",action.payload);
 		default:		
 			return state
 	}
