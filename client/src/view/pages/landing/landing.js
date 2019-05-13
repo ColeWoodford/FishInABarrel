@@ -28,7 +28,7 @@ class Landing extends Component {
   handleNewUser = () => {
     const { lakes } = this.props;
     if (lakes.length === 0) {
-      this.props.newLake("Forest Lake")
+      this.props.newLake("Major Tom's Ocean")
     }
     this.setState({
       playGame: false,

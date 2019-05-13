@@ -4,6 +4,8 @@ html {
 }
 body {
   border: 1px solid #000;
-  background: rgb(102, 102, 153, 0.2);
+  background-image: url("./view/images/background2.png");
+  background-size: cover;
   height: 100%;
+  color: lightgrey;
 }

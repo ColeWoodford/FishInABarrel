@@ -9,10 +9,10 @@ class ShopTiles extends Component {
   }
 
 	makeShop = () => {
-    const {buyItem, userId} = this.props;
+    const {buyItem, userId, money} = this.props;
     return (
       <div>
-        {itemsForSale.map(item => <ItemForSale key={item.name} item={item} buyItem={buyItem} userId={userId} />)}
+        {itemsForSale.map(item => <ItemForSale key={item.name} item={item} buyItem={buyItem} userId={userId} money={money} />)}
       </div>
     )
   }

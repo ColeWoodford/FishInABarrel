@@ -12,9 +12,10 @@ export const ShopTitle = styled.button`
   border-radius: 4px;
   border: 1px solid grey;
   box-shadow: none;
+  background: rgb(148, 148, 184, 0.9);
 
   &:hover {
-		background: #4ddbff;
+    background: rgb(194, 194, 214, .7);
 	}
 
 	&:focus {
@@ -25,9 +26,11 @@ export const ShopTitle = styled.button`
 export const ShopContent = styled.div`
   text-align: left
   margin-top: 5px;
+  margin-bottom: 5px;
   width: 89%
   border-radius: 4px;
   border: 1px solid grey;
+  background: rgb(148, 148, 184, 0.7);
 `;
 
 export const ShopItem = styled.div`

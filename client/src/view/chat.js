@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ChatWindow, ChatWrapper, ChatTextEntry, ChatSendButton } from './chat-sc';
+import { ChatCollapseButton, ChatWindow, ChatWrapper, ChatTextEntry, ChatSendButton, ChatMessage } from './chat-sc';
 import PropTypes from 'prop-types';
 
 class Chat extends Component {
@@ -9,7 +9,9 @@ class Chat extends Component {
     this.state = {
       message: "",
       chatBoxContent: [],
-      user: this.props.username
+      user: this.props.username,
+      collapseMsg: "Collapse",
+      showContent: true
     };
     const { socket } = this.props;
     socket.on('chat message', (msg) => {
@@ -71,21 +73,38 @@ class Chat extends Component {
   makeChat = () => {
     return (
       <div>
-        {this.state.chatBoxContent.map(msg => <div key={msg}> &nbsp;{msg} </div>)}
+        {this.state.chatBoxContent.map(msg => <ChatMessage key={msg}> &nbsp;{msg} </ChatMessage>)}
       </div>
     )
   }
 
-	render() {
+  handleCollapse = () => {
+    if (this.state.showContent === true) {
+			this.setState({
+        showContent: false,
+        collapseMsg: "Expand"
+			})
+		} else {
+			this.setState({
+        showContent: true,
+        collapseMsg: "Collapse"
+			})
+		}
+  }
 
+	render() {
+    let {collapseMsg} = this.state;
     return(
       <div>
         <ChatWrapper>
+          <ChatCollapseButton onClick={this.handleCollapse}>{collapseMsg}</ChatCollapseButton>
+          <div style={{display:this.state.showContent ? "block" : "none"}}>
           <ChatWindow>
             {this.makeChat()}
           </ChatWindow>
           <ChatTextEntry type="text" value={this.state.message} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
           <ChatSendButton onClick={this.handleSubmit} >Send</ChatSendButton>
+          </div>
         </ChatWrapper>
       </div>
     )

@@ -17,14 +17,13 @@ class Inventory extends Component {
     let allItems = items.concat(fish);
     return (
 			<div>
-        <p>Money: {money}</p>
-        Inventory<br></br>
         <InvSpace
         size={size}
         items={allItems}
         sellItem={sellItem}
         buyItem={buyItem}
         userId={userId}
+        money={money}
         />
 			</div>
 		)

@@ -18,17 +18,25 @@ export const Item = styled.div`
 export const RodContainer = styled.div`
   height: 50px;
   width: 100px;
-  background: lightgrey;
+  border: 2px solid rgb(38, 38, 115, 0.25);
+  background: rgb(179, 240, 255, 0.25);
 `;
 
 export const BaitContainer = styled.div`
   height: 50px;
   width: 100px;
-  background: lightgrey;
+  border: 2px solid rgb(38, 38, 115, 0.25);
+  background: rgb(179, 240, 255, 0.25);
+  display: inline-block;
 `;
 
 export const BagContainer = styled.div`
   height: 100px;
   width: 500px;
-  background: lightgrey;
+  border: 2px solid rgb(38, 38, 115, 0.25);
+  background: rgb(179, 240, 255, 0.25);
+`;
+
+export const InvInfo = styled.div`
+  display: inline-block;
 `;

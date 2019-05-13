@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { LakeContainer, Row, Col } from './lakeTile-sc';
+import { LakeContainer, LakeTitle, Row, Col } from './lakeTile-sc';
 import { getLakes, catchFish } from '../../../store/actions/lake-actions';
 import Chat from '../../chat';
 import Tile from './lakeTile';
@@ -38,9 +38,6 @@ class Lake extends Component {
     if(username !== null) {
       lake =
       <div>
-        <div>
-					{this.getLakeName()}
-				</div>
         <LakeContainer>
           <Row>
             <Col>

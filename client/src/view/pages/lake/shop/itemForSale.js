@@ -6,23 +6,27 @@ class ItemForSale extends Component {
 		super(props);
   }
   
-  handleClick = (itemName) => {
+  handleClick = (itemName, itemValue, money) => {
     const {buyItem, userId} = this.props;
-    if(window.confirm("Do you want to buy " + itemName + "?")) {
-      const buyItemPayload = {
-        itemName,
-        userId
-      }
-      buyItem(buyItemPayload);
+    if (itemValue > money) {
+      alert("You do not have enough money to buy that.")
     } else {
-      // console.log("nothing happens.");
+      if(window.confirm("Do you want to buy " + itemName + "?")) {
+        const buyItemPayload = {
+          itemName,
+          userId
+        }
+        buyItem(buyItemPayload);
+      } else {
+        // console.log("nothing happens.");
+      }
     }
   }
 
 	render() {
-    const { item } = this.props;
+    const { item, money } = this.props;
     return (
-      <ShopItem onClick={() => this.handleClick(item.name)}>
+      <ShopItem onClick={() => this.handleClick(item.name, item.value, money)}>
         {item.name}<br/>
         {item.value}
       </ShopItem>

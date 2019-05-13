@@ -27,7 +27,7 @@ class Shop extends Component {
 	}
 
 	render() {
-		const {buyItem, userId} = this.props;
+		const {buyItem, userId, money} = this.props;
 		return (
 			<div>
 				<ShopWrapper>
@@ -35,7 +35,7 @@ class Shop extends Component {
 						{this.props.title}
 					</ShopTitle>
 					<ShopContent style={{display:this.state.showContent ? "block" : "none"}}>
-						<ShopTiles onDropShop={this.props.onDropShop} buyItem={buyItem} userId={userId} />
+						<ShopTiles onDropShop={this.props.onDropShop} buyItem={buyItem} userId={userId} money={money} />
 					</ShopContent>
 				</ShopWrapper>
 			</div>

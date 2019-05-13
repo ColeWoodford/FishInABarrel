@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RodContainer, Item, BaitContainer, BagContainer, InventoryContainer } from './inventory-sc';
+import { RodContainer, Item, BaitContainer, BagContainer, InventoryContainer, InvInfo } from './inventory-sc';
 import Shop from '../shop/shop';
 import { sellItem } from '../../../../store/actions/inventory-actions';
 
@@ -103,7 +103,7 @@ class InvSpace extends Component {
   }
 
 	render() {
-    const { size, buyItem, userId } = this.props;
+    const { size, buyItem, userId, money } = this.props;
     let items = {
       equipedRod: [],
       equipedBait: [],
@@ -125,8 +125,7 @@ class InvSpace extends Component {
     let baitFull = items.equipedBait.length;
     return (
       <div>
-        <Shop title="Shop" onDropShop={(e)=>this.onDropShop(e)} buyItem={buyItem} userId={userId} />
-        {bagFull}/{size}
+        <Shop title="Shop" onDropShop={(e)=>this.onDropShop(e)} buyItem={buyItem} userId={userId} money={money} />
         <InventoryContainer>
           <RodContainer
           onDragOver={(e)=>this.onDragOver(e)}
@@ -139,6 +138,11 @@ class InvSpace extends Component {
           onDrop={(e)=>this.onDropBait(e, "equipedBait", baitFull)}>
           {items.equipedBait}
           </BaitContainer>
+
+          <InvInfo>
+            Money: {money}<br/>
+            Inventory Space: {bagFull}/{size}
+          </InvInfo>
 
           <BagContainer className="inBag"
             onDragOver={(e)=>this.onDragOver(e)}

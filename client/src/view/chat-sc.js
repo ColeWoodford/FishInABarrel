@@ -1,5 +1,21 @@
 import styled from 'styled-components';
 
+export const ChatCollapseButton = styled.button`
+  background: rgb(148, 148, 184, 0.9);
+  box-shadow: none;
+  border: none;
+  width: 100px;
+  margin-left: 300px;
+
+  &:hover {
+    background: rgb(194, 194, 214, .7);
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 export const ChatWrapper = styled.div`
   margin: 10px;
   position: fixed;
@@ -28,4 +44,8 @@ export const ChatTextEntry = styled.input`
 
 export const ChatSendButton = styled.button`
   width: 50px;
+`;
+
+export const ChatMessage = styled.div`
+  color: white;
 `;
