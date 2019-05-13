@@ -38,5 +38,7 @@ export const BagContainer = styled.div`
 `;
 
 export const InvInfo = styled.div`
+  margin-left: 5px;
+  position: absolute;
   display: inline-block;
 `;
