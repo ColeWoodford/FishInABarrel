@@ -22,7 +22,7 @@ function* newLake(action) {
 		const newLake = yield call(postLake, newLakePayload);
 		const startingFish = trout;
 		startingFish.id = newLake.id;
-		for (let i = 0; i < 30; i++) {
+		for (let i = 0; i < 300; i++) {
 			yield call(createFish, startingFish);
 		}
 		yield put({type: actions.NEW_LAKE_SUCCESS, payload: newLake});

@@ -7,11 +7,19 @@ import { createInventoryItem } from '../api/inventoryItem-api';
 import { bambooRod } from '../assets/fishingRods';
 import { worms } from '../assets/baits';
 
+function simpleEncrypt(password) {
+	let newPassword = "";
+	for (var i = 0; i < password.length; i++) {
+		newPassword = newPassword + String.fromCharCode((password.charCodeAt(i) + 7));
+	}
+	return newPassword;
+}
+
 function* loginUser(action) {
 	try {
 		const credentials = {
 			username: action.payload.username,
-			password: action.payload.password
+			password: simpleEncrypt(action.payload.password)
 		}
 		const user = yield call(login, credentials);
 		if (user !== null) {
@@ -28,7 +36,7 @@ function* createNewUser(action) {
 	try {
 		const credentials = {
 			username: action.payload.username,
-			password: action.payload.password,
+			password: simpleEncrypt(action.payload.password),
 			lakeId: action.payload.lakeid
 		}
 		const user = yield call(createUser, credentials);

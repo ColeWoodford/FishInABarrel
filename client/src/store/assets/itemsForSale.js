@@ -1,8 +1,12 @@
-import {bambooRod} from './fishingRods';
+import {bambooRod, steelRod, ultraRod} from './fishingRods';
 
-import {worms} from './baits';
+import {worms, spinner, superJig} from './baits';
 
 export const itemsForSale = [
   bambooRod,
-  worms
+  steelRod,
+  ultraRod,
+  worms,
+  spinner,
+  superJig
 ]

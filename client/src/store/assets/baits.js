@@ -6,3 +6,21 @@ export const worms = {
   type: "bait",
   bgcolor: "red"
 }
+
+export const spinner = {
+  name: "Spinner",
+  level: 2,
+  value: 500,
+  category: "inBag",
+  type: "bait",
+  bgcolor: "red"
+}
+
+export const superJig = {
+  name: "Super Jig",
+  level: 3,
+  value: 5000,
+  category: "inBag",
+  type: "bait",
+  bgcolor: "red"
+}
