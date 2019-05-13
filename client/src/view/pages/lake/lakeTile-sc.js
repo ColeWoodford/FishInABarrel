@@ -55,5 +55,32 @@ export const LakeButton = styled.button`
 	}
 `;
 
-export const LakeTitle = styled.div`
+export const LoginMessage = styled.div`
+	margin: auto;
+	margin-top: 20px;
+	width: 50%;
+	padding: 5px;
+	text-align: center;
+	background-color: rgb(148, 148, 184, 0.9);
+`;
+
+export const LogoutContainer = styled.div`
+	margin-left: 80%;
+	margin-top: 5px;
+`;
+
+export const LogoutButton = styled.a`
+	text-align: center;
+	text-decoration: none;
+	width: 100px;
+	padding: 2px;
+	color: lightgrey;
+
+	background: rgb(148, 148, 184, 0.9);
+	box-shadow: none;
+	border: none;
+
+	&:hover {
+		background: rgb(194, 194, 214, .7);
+	}
 `;

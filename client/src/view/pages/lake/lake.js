@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { LakeContainer, LakeTitle, Row, Col } from './lakeTile-sc';
+import { LakeContainer, Row, Col, LoginMessage, LogoutButton, LogoutContainer } from './lakeTile-sc';
 import { getLakes, catchFish } from '../../../store/actions/lake-actions';
 import Chat from '../../chat';
 import Tile from './lakeTile';
@@ -38,6 +38,7 @@ class Lake extends Component {
     if(username !== null) {
       lake =
       <div>
+        <LogoutContainer>Logged in as {username}  <LogoutButton href="/">Logout</LogoutButton></LogoutContainer>
         <LakeContainer>
           <Row>
             <Col>
@@ -78,9 +79,11 @@ class Lake extends Component {
       </div>
     } else {
       lake =
-      <div>
-        Please login
-      </div>
+      <LoginMessage>
+        <LogoutButton href="/">
+          Please login
+        </LogoutButton>
+      </LoginMessage>
     }
 
     return(

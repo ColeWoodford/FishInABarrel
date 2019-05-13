@@ -115,8 +115,7 @@ class InvSpace extends Component {
         key={t.id}
         onDragStart={(e)=>this.onDragStart(e, t.id, t.name)}
         draggable
-        className="draggable"
-        style={{backgroundColor: t.bgcolor}}>
+        className="draggable">
           {t.name}
       </Item>);
     });

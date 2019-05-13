@@ -9,6 +9,7 @@ export const Item = styled.div`
   height: 50px;
   width: 100px;
   display: inline-block;
+  background-color: rgb(148, 148, 184, 0.9);
 
   &:hover {
     opacity: 0.5;
