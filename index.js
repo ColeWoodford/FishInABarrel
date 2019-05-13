@@ -65,7 +65,7 @@ function resolveFishers() {
 				console.log("Random=",randomFishIndex);
 				fishId = fish[randomFishIndex].id; 
 			}
-			//Add the selected fish to our used list so we do not use it again
+			//Add the selected fish to our used list so we do not use it again 
 			usedFishList.push(fishId);
 			//Update the fish to have lakeId equal null to let the user try to catch it
 			const putrequest = async () => {
